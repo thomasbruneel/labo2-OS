@@ -99,19 +99,17 @@ public class GuiController {
 		instructionReader ir=new instructionReader();
 		instructies=ir.readIn("Instructions_30_3.xml");
 		setAantalInstructies(instructies.size());
-		
+		init();
 		System.out.println(instructies.size());
-		
-		
 	}
+
 	public void file2(){
 		System.out.println("file2");
 		clear();
 		instructionReader ir=new instructionReader();
 		instructies=ir.readIn("Instructions_20000_4.xml");
 		setAantalInstructies(instructies.size());
-		
-		
+		init();
 		System.out.println(instructies.size());
 		
 
@@ -122,8 +120,17 @@ public class GuiController {
 		instructionReader ir=new instructionReader();
 		instructies=ir.readIn("Instructions_20000_20.xml");
 		setAantalInstructies(instructies.size());
-		
+		init();
 		System.out.println(instructies.size());
+		
+	}
+	private void init() {
+		timer.setText(String.valueOf(time));
+		vPid.setText(String.valueOf(instructies.peek().getPid()));
+		vInstructie.setText(instructies.peek().getOperatie());
+		vVirtueelAdres.setText(String.valueOf(instructies.peek().getVirtueelAdres()));
+		vPageNummer.setText(String.valueOf(instructies.peek().getVirtueelAdres()/4096));
+		vOffset.setText(String.valueOf(instructies.peek().getVirtueelAdres()%4096));
 		
 	}
 	public void eenInstructie(){
