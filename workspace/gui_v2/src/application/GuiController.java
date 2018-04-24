@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import model.Instructie;
+import model.Proces;
 import xmlReader.instructionReader;
 
 
@@ -111,7 +112,7 @@ public class GuiController {
 		
 	}
 	
-	private void instructieUitvoeren(Instructie huidigeInstructie) {
+	public void instructieUitvoeren(Instructie huidigeInstructie) {
 		switch(huidigeInstructie.getOperatie()){
 			case "Start":Start(huidigeInstructie);break;
 			case "Read":Read(huidigeInstructie);break;
@@ -122,20 +123,24 @@ public class GuiController {
 		
 	}
 	
-	private void Start(Instructie huidigeInstructie) {
+	public void Start(Instructie huidigeInstructie) {
+		Proces p=new Proces(huidigeInstructie.getPid());
+		System.out.println("start");
 		
 		
 	}
-	private void Read(Instructie huidigeInstructie) {
+	public void Read(Instructie huidigeInstructie) {
+		System.out.println("read");
 		
 		
 	}
-	private void Write(Instructie huidigeInstructie) {
-		
+	public void Write(Instructie huidigeInstructie) {
+		System.out.println("write");
 		
 	}
 
-	private void Terminate(Instructie huidigeInstructie) {
+	public void Terminate(Instructie huidigeInstructie) {
+		System.out.println("terminate");
 		
 		
 	}
