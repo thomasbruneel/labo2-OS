@@ -97,6 +97,8 @@ public class GuiController {
 				hPageNummer.setText(String.valueOf(huidigeInstructie.getVirtueelAdres()/4096));
 				hOffset.setText(String.valueOf(huidigeInstructie.getVirtueelAdres()%4096));
 				
+				instructieUitvoeren(huidigeInstructie);
+				
 				vPid.setText(String.valueOf(instructies.peek().getPid()));
 				vInstructie.setText(instructies.peek().getOperatie());
 				vVirtueelAdres.setText(String.valueOf(instructies.peek().getVirtueelAdres()));
@@ -109,6 +111,37 @@ public class GuiController {
 		
 	}
 	
+	private void instructieUitvoeren(Instructie huidigeInstructie) {
+		switch(huidigeInstructie.getOperatie()){
+			case "Start":Start(huidigeInstructie);break;
+			case "Read":Read(huidigeInstructie);break;
+			case "Write":Write(huidigeInstructie);break;
+			case "Terminate":Terminate(huidigeInstructie);break;
+		}
+		
+		
+	}
+	
+	private void Start(Instructie huidigeInstructie) {
+		
+		
+	}
+	private void Read(Instructie huidigeInstructie) {
+		
+		
+	}
+	private void Write(Instructie huidigeInstructie) {
+		
+		
+	}
+
+	private void Terminate(Instructie huidigeInstructie) {
+		
+		
+	}
+
+
+
 	public void allInstructie(){
 		System.out.println("all instructie");
 		
