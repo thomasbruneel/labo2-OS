@@ -4,8 +4,11 @@ import java.util.Queue;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import model.Instructie;
+import model.PageTableEntry;
 import model.Proces;
 import xmlReader.instructionReader;
 
@@ -47,6 +50,42 @@ public class GuiController {
     private TextField hOffset;
 	@FXML
     private TextField vOffset;
+	
+	//FXML tabels
+	//RAM
+    @FXML
+    private TableView<PageTableEntry> ramTabel;
+    
+    @FXML
+    private TableColumn<PageTableEntry, Integer> rFrameNummer;
+
+    @FXML
+    private TableColumn<PageTableEntry, Integer> rPageNummer;
+
+    @FXML
+    private TableColumn<PageTableEntry, Integer> rPid;
+    
+    @FXML
+    private TableColumn<PageTableEntry, Integer> ramPageLast;
+    
+    //pageTabel
+    @FXML
+    private TableView<PageTableEntry> pageTabel;
+    
+    @FXML
+    private TableColumn<PageTableEntry, Integer> pPageNummer;
+    
+    @FXML
+    private TableColumn<PageTableEntry, Boolean> pPresentBit;
+
+    @FXML
+    private TableColumn<PageTableEntry, Boolean> pModifyBit;
+
+    @FXML
+    private TableColumn<PageTableEntry, Integer> pLastAccesTime;
+
+    @FXML
+    private TableColumn<PageTableEntry, Integer> pFrameNummer;
 	
 	
 	public void file1(){
