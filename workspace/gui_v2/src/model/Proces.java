@@ -8,6 +8,7 @@ public class Proces {
 	
 	public Proces(int pid){
 		this.pid=pid;
+		this.lastAccesTime=0;
 	}
 	
 	public int getPid() {

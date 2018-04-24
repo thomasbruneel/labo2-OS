@@ -1,5 +1,7 @@
 package application;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Queue;
 
 import javafx.fxml.FXML;
@@ -18,6 +20,8 @@ public class GuiController {
 	private Queue<Instructie> instructies=null;
 	private int time=0;
 	private int aantalInstructies=0;
+	
+	private List<Proces>processen=new ArrayList<Proces>();
 	
 	//alle FXML textfields
 	@FXML
@@ -51,7 +55,7 @@ public class GuiController {
 	@FXML
     private TextField vOffset;
 	
-	//FXML tabels
+	
 	//RAM
     @FXML
     private TableView<PageTableEntry> ramTabel;
@@ -67,6 +71,7 @@ public class GuiController {
     
     @FXML
     private TableColumn<PageTableEntry, Integer> ramPageLast;
+    
     
     //pageTabel
     @FXML
@@ -153,33 +158,40 @@ public class GuiController {
 	
 	public void instructieUitvoeren(Instructie huidigeInstructie) {
 		switch(huidigeInstructie.getOperatie()){
-			case "Start":Start(huidigeInstructie);break;
-			case "Read":Read(huidigeInstructie);break;
-			case "Write":Write(huidigeInstructie);break;
-			case "Terminate":Terminate(huidigeInstructie);break;
+			case "Start":Start(huidigeInstructie,time);break;
+			case "Read":Read(huidigeInstructie,time);break;
+			case "Write":Write(huidigeInstructie,time);break;
+			case "Terminate":Terminate(huidigeInstructie,time);break;
 		}
 		
 		
 	}
 	
-	public void Start(Instructie huidigeInstructie) {
-		Proces p=new Proces(huidigeInstructie.getPid());
+	public void Start(Instructie huidigeInstructie, int time) {
 		System.out.println("start");
-		
+		Proces p=new Proces(huidigeInstructie.getPid());
+		processen.add(p);
 		
 	}
-	public void Read(Instructie huidigeInstructie) {
+	public void Read(Instructie huidigeInstructie, int time) {
 		System.out.println("read");
 		
 		
 	}
-	public void Write(Instructie huidigeInstructie) {
+	public void Write(Instructie huidigeInstructie, int time) {
 		System.out.println("write");
 		
 	}
 
-	public void Terminate(Instructie huidigeInstructie) {
+	public void Terminate(Instructie huidigeInstructie, int time) {
 		System.out.println("terminate");
+		Proces weg=null;
+		for(Proces p:processen){
+			if(p.getPid()==huidigeInstructie.getPid()){
+				weg=p;
+			}
+		}
+		processen.remove(weg);
 		
 		
 	}
