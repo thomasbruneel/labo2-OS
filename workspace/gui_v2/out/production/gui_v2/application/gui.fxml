@@ -20,9 +20,9 @@
               <menus>
                 <Menu mnemonicParsing="false" text="File">
                   <items>
-                    <MenuItem fx:id="f1" mnemonicParsing="false" onAction="#file1" text="Instructies_30_3" />
-                        <MenuItem fx:id="f2" mnemonicParsing="false" onAction="#file2" text="Instructies_20000_4" />
-                        <MenuItem fx:id="f3" mnemonicParsing="false" onAction="#file3" text="Instructies_20000_20" />
+                      <MenuItem fx:id="f1" mnemonicParsing="false" onAction="#file1" text="Instructies_30_3" />
+                      <MenuItem fx:id="f2" mnemonicParsing="false" onAction="#file2" text="Instructies_20000_4" />
+                      <MenuItem fx:id="f3" mnemonicParsing="false" onAction="#file3" text="Instructies_20000_20" />
                   </items>
                 </Menu>
               </menus>
@@ -33,8 +33,8 @@
       <Button fx:id="alleInstrucitiesKnop" layoutX="214.0" layoutY="40.0" mnemonicParsing="false" onAction="#allInstructie" prefHeight="25.0" prefWidth="144.0" text="alle instructies" />
       <TableView fx:id="ramTabel" layoutX="156.0" layoutY="245.0" prefHeight="200.0" prefWidth="1005.0">
         <columns>
-          <TableColumn fx:id="rFrameNummer" prefWidth="141.0" text="Frame Nummer" />
-          <TableColumn fx:id="rPid" prefWidth="48.0" text="PID" />
+            <TableColumn fx:id="rFrameNummer" prefWidth="141.0" text="Frame Nummer" />
+            <TableColumn fx:id="rPid" prefWidth="48.0" text="PID" />
             <TableColumn fx:id="rPageNummer" prefWidth="187.0" text="Page Nummer" />
         </columns>
       </TableView>
@@ -42,8 +42,8 @@
       <TextField fx:id="timer" layoutX="1141.0" layoutY="40.0" />
       <TableView fx:id="pageTabel" layoutX="156.0" layoutY="507.0" prefHeight="200.0" prefWidth="1005.0">
         <columns>
-          <TableColumn fx:id="pPageNummer" prefWidth="108.0" text="Page Nummer" />
-          <TableColumn fx:id="pPresentBit" prefWidth="100.0" text="Present Bit" />
+            <TableColumn fx:id="pPageNummer" prefWidth="108.0" text="Page Nummer" />
+            <TableColumn fx:id="pPresentBit" prefWidth="100.0" text="Present Bit" />
             <TableColumn fx:id="pModifyBit" prefWidth="75.0" text="Modify Bit" />
             <TableColumn fx:id="pLastAccesTime" prefWidth="150.0" text="Last Access Time" />
             <TableColumn fx:id="pFrameNummer" prefWidth="171.0" text="Frame Nummer" />

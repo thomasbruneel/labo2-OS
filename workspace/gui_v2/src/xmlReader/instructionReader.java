@@ -20,7 +20,7 @@ public class instructionReader {
 		
 		
 		public Queue<Instructie> readIn(String fileName) {
-			Queue<Instructie> instructies = new LinkedList<Instructie>();
+			Queue<Instructie> instructies = new LinkedList<>();
 				try{
 					File xmlFile = new File(fileName);
 					DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -32,8 +32,6 @@ public class instructionReader {
 					for (int temp = 0; temp < processlist.getLength(); temp++) {
 
 						Node nNode = processlist.item(temp);
-
-					
 
 						if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 

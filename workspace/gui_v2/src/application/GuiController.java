@@ -9,9 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import model.Instructie;
-import model.PageTableEntry;
-import model.Proces;
+import model.*;
 import xmlReader.instructionReader;
 
 
@@ -20,8 +18,12 @@ public class GuiController {
 	private Queue<Instructie> instructies=null;
 	private int time=0;
 	private int aantalInstructies=0;
+
+    private Instructie huidigeInstructie, volgendeInstructie;
 	
 	private List<Proces>processen=new ArrayList<Proces>();
+
+	private RAM RAM = new RAM();
 	
 	//alle FXML textfields
 	@FXML
@@ -136,12 +138,11 @@ public class GuiController {
 	public void eenInstructie(){
 		if(instructies!=null){
 			System.out.println("1 instructie");
-			upTime();
 			if(time<=aantalInstructies){
 				
 				timer.setText(String.valueOf(time));
 			
-				Instructie huidigeInstructie =instructies.remove();
+				huidigeInstructie = volgendeInstructie;
 			
 				hPid.setText(String.valueOf(huidigeInstructie.getPid()));
 				hInstructie.setText(huidigeInstructie.getOperatie());
@@ -150,18 +151,18 @@ public class GuiController {
 				hOffset.setText(String.valueOf(huidigeInstructie.getVirtueelAdres()%4096));
 				
 				instructieUitvoeren(huidigeInstructie);
+
+				volgendeInstructie = instructies.remove();
 				
-				vPid.setText(String.valueOf(instructies.peek().getPid()));
-				vInstructie.setText(instructies.peek().getOperatie());
-				vVirtueelAdres.setText(String.valueOf(instructies.peek().getVirtueelAdres()));
-				vPageNummer.setText(String.valueOf(instructies.peek().getVirtueelAdres()/4096));
-				vOffset.setText(String.valueOf(instructies.peek().getVirtueelAdres()%4096));
-				huidigeInstructie=null;
+				vPid.setText(String.valueOf(volgendeInstructie.getPid()));
+				vInstructie.setText(volgendeInstructie.getOperatie());
+				vVirtueelAdres.setText(String.valueOf(volgendeInstructie.getVirtueelAdres()));
+				vPageNummer.setText(String.valueOf(volgendeInstructie.getVirtueelAdres()/4096));
+				vOffset.setText(String.valueOf(volgendeInstructie.getVirtueelAdres()%4096));
 			}
-			
 		}
-		
-	}
+        upTime();
+    }
 	
 	public void instructieUitvoeren(Instructie huidigeInstructie) {
 		switch(huidigeInstructie.getOperatie()){
@@ -225,6 +226,7 @@ public class GuiController {
 		vVirtueelAdres.setText("");
 		vPageNummer.setText("");
 		vOffset.setText("");
+		RAM.clear();
 		
 		
 	}
