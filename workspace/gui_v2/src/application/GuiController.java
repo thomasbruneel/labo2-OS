@@ -133,6 +133,7 @@ public class GuiController {
 		vVirtueelAdres.setText(String.valueOf(instructies.peek().getVirtueelAdres()));
 		vPageNummer.setText(String.valueOf(instructies.peek().getVirtueelAdres()/4096));
 		vOffset.setText(String.valueOf(instructies.peek().getVirtueelAdres()%4096));
+		volgendeInstructie=instructies.remove();
 		
 	}
 	public void eenInstructie(){
