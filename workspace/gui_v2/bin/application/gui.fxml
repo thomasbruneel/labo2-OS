@@ -31,7 +31,7 @@
       </HBox>
       <Button fx:id="eenInstructieKnop" layoutX="25.0" layoutY="40.0" mnemonicParsing="false" onAction="#eenInstructie" prefHeight="25.0" prefWidth="144.0" text="één instructie" />
       <Button fx:id="alleInstrucitiesKnop" layoutX="214.0" layoutY="40.0" mnemonicParsing="false" onAction="#allInstructie" prefHeight="25.0" prefWidth="144.0" text="alle instructies" />
-      <TableView fx:id="ramTabel" layoutX="822.0" layoutY="284.0" prefHeight="331.0" prefWidth="374.0">
+      <TableView fx:id="ramTabelGui" layoutX="822.0" layoutY="284.0" prefHeight="331.0" prefWidth="374.0">
         <columns>
             <TableColumn fx:id="rFrameNummer" prefWidth="141.0" text="Frame Nummer" />
             <TableColumn fx:id="rPid" prefWidth="48.0" text="PID" />
@@ -40,7 +40,7 @@
       </TableView>
       <Label layoutX="1098.0" layoutY="44.0" prefHeight="17.0" prefWidth="50.0" text="timer:" />
       <TextField fx:id="timer" layoutX="1141.0" layoutY="40.0" />
-      <TableView fx:id="pageTabel" layoutX="39.0" layoutY="287.0" prefHeight="440.0" prefWidth="608.0">
+      <TableView fx:id="pageTabelGui" layoutX="39.0" layoutY="287.0" prefHeight="440.0" prefWidth="608.0">
         <columns>
             <TableColumn fx:id="pPageNummer" prefWidth="108.0" text="Page Nummer" />
             <TableColumn fx:id="pPresentBit" prefWidth="100.0" text="Present Bit" />

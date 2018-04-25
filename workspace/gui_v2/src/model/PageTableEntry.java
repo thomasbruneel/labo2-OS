@@ -3,31 +3,41 @@ package model;
 public class PageTableEntry {
 	
 	private int pid;
-	private boolean presentBit;
-	private boolean modifyBit;
+	private int presentBit;
+	private int modifyBit;
 	private int pageNumber;
 	private int frameNumber;
 	private int lastAccessTime;
 	
 	public PageTableEntry(){
-		presentBit = false;
-		modifyBit = false;
+		presentBit = 0;
+		modifyBit = 0;
 		lastAccessTime = 0;
 		frameNumber = -1;
 	}
-	
-	public PageTableEntry(boolean presentBit, boolean modifyBit, int frameNumber, int lastAccessTime) {
+	/*
+	public PageTableEntry(int presentBit, int modifyBit, int frameNumber, int lastAccessTime) {
 		super();
 		this.presentBit = presentBit;
 		this.modifyBit = modifyBit;
 		this.frameNumber = frameNumber;
 		this.lastAccessTime = lastAccessTime;
 	}
+	*/
 	
-	public PageTableEntry(int i, int j, int k) {
-		frameNumber=i;
-		pageNumber=j;
-		pid=k;
+	public PageTableEntry(int pageNumber,int presentBit,int modifyBit,int lastAccessTime,int frameNumber) {	//nodig voor pagetable op te stellen 
+		this.pageNumber=pageNumber;
+		this.presentBit=presentBit;
+		this.modifyBit=modifyBit;
+		this.lastAccessTime=lastAccessTime;
+		this.frameNumber=frameNumber;
+	
+	}
+	
+	public PageTableEntry(int frameNumber, int pageNumber, int pid) {	//nodig voor ramtable op te stellen 
+		this.frameNumber=frameNumber;
+		this.pageNumber=pageNumber;
+		this.pid=pid;
 	}
 
 	//getters en setters
@@ -37,18 +47,23 @@ public class PageTableEntry {
 	public void setPid(int pid) {
 		this.pid = pid;
 	}
-	public boolean isPresentBit() {
+
+	public int getPresentBit() {
 		return presentBit;
 	}
-	public void setPresentBit(boolean presentBit) {
+
+	public void setPresentBit(int presentBit) {
 		this.presentBit = presentBit;
 	}
-	public boolean isModifyBit() {
+
+	public int getModifyBit() {
 		return modifyBit;
 	}
-	public void setModifyBit(boolean modifyBit) {
+
+	public void setModifyBit(int modifyBit) {
 		this.modifyBit = modifyBit;
 	}
+
 	public int getPageNumber() {
 		return pageNumber;
 	}

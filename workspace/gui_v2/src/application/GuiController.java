@@ -25,9 +25,12 @@ public class GuiController {
     private Instructie huidigeInstructie, volgendeInstructie;
 	
 	private List<Proces>processen=new ArrayList<Proces>();
-	private PageTable pageTable;
-
+	
 	private RAM RAM = new RAM();
+	
+	private List<PageTableEntry> ram; // nodig voor ramtable op te stellen in GUI
+	
+	private List<PageTableEntry> pageTabel; // nodig voor pagetable op te stellen in GUI
 	
 	//alle FXML textfields
 	@FXML
@@ -64,7 +67,7 @@ public class GuiController {
 	
 	//RAM
     @FXML
-    private TableView<PageTableEntry> ramTabel;
+    private TableView<PageTableEntry> ramTabelGui;
     
     @FXML
     private TableColumn<PageTableEntry, Integer> rFrameNummer;
@@ -79,16 +82,16 @@ public class GuiController {
     
     //pageTabel
     @FXML
-    private TableView<PageTableEntry> pageTabel;
+    private TableView<PageTableEntry> pageTabelGui;
     
     @FXML
     private TableColumn<PageTableEntry, Integer> pPageNummer;
     
     @FXML
-    private TableColumn<PageTableEntry, Boolean> pPresentBit;
+    private TableColumn<PageTableEntry, Integer> pPresentBit;
 
     @FXML
-    private TableColumn<PageTableEntry, Boolean> pModifyBit;
+    private TableColumn<PageTableEntry, Integer> pModifyBit;
 
     @FXML
     private TableColumn<PageTableEntry, Integer> pLastAccesTime;
@@ -146,12 +149,28 @@ public class GuiController {
 	}
 	
 	public void aanmakenRAM() {
+		ram=new ArrayList<>();
 		for(int i=0;i<12;i++){
-			ramTabel.getItems().add(new PageTableEntry(i,-1,-1));
+			PageTableEntry pte=new PageTableEntry(i,-1,-1);  // framenummer pid pagenummer
+			ram.add(pte);
+			ramTabelGui.getItems().add(pte); //GUI
 		}
 		rFrameNummer.setCellValueFactory(new PropertyValueFactory<>("frameNumber"));
 		rPageNummer.setCellValueFactory(new PropertyValueFactory<>("pageNumber"));
 		rPid.setCellValueFactory(new PropertyValueFactory<>("pid"));
+	}
+	public void aanmakenPageTabel() {
+		pageTabel=new ArrayList<>();
+		for(int i=0;i<16;i++){
+			PageTableEntry pte=new PageTableEntry(i,-1,-1,-1,-1);  // pagenummer presentbit modifybit lastaccestime framenummer
+			pageTabel.add(pte);
+			pageTabelGui.getItems().add(pte); //GUI
+		}
+		pPageNummer.setCellValueFactory(new PropertyValueFactory<>("pageNumber"));
+		pPresentBit.setCellValueFactory(new PropertyValueFactory<>("presentBit"));
+		pModifyBit.setCellValueFactory(new PropertyValueFactory<>("modifyBit"));
+		pLastAccesTime.setCellValueFactory(new PropertyValueFactory<>("lastAccessTime"));
+		pFrameNummer.setCellValueFactory(new PropertyValueFactory<>("frameNumber"));
 	}
 	public void eenInstructie(){
 		if(instructies!=null){
@@ -198,7 +217,7 @@ public class GuiController {
 		System.out.println("start");
 		Proces p=new Proces(huidigeInstructie.getPid());
 		processen.add(p);
-		
+		aanmakenPageTabel();
 	}
 
 
@@ -251,8 +270,8 @@ public class GuiController {
 		vOffset.setText("");
 		RAM.clear();
 		
-		for ( int i = 0; i<ramTabel.getItems().size(); i++) {	//tabel ram clearen
-		    ramTabel.getItems().clear();
+		for ( int i = 0; i<ramTabelGui.getItems().size(); i++) {	//tabel ram clearen
+		    ramTabelGui.getItems().clear();
 		}
 		
 	}
