@@ -218,24 +218,14 @@ public class GuiController {
 		
 		
 	}
-	
-<<<<<<< HEAD
-	public void Start(Instructie huidigeInstructie, int time) {
+
+	public void Start(Instructie huidigeInstructie) {
 		System.out.println("start");
 		Proces p=new Proces(huidigeInstructie.getPid());
 		processen.add(p);
 		aanmakenPageTabel(huidigeInstructie.getPid());
-=======
-	public void Start(Instructie huidigeInstructie) {
-        System.out.println("start");
-        Proces p=new Proces(huidigeInstructie.getPid());
-
-        processen.add(p);
-
-        RAM.newProces(p,Integer.MAX_VALUE);
-		aanmakenPageTabel();
->>>>>>> adb87933a1a42e677b959302094fc0d760155555
 	}
+ 
 
 
 	public void Read(Instructie huidigeInstructie) {
