@@ -24,6 +24,12 @@ public class PageTableEntry {
 		this.lastAccessTime = lastAccessTime;
 	}
 	
+	public PageTableEntry(int i, int j, int k) {
+		frameNumber=i;
+		pageNumber=j;
+		pid=k;
+	}
+
 	//getters en setters
 	public int getPid() {
 		return pid;

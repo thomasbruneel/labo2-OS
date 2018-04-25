@@ -4,11 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import model.*;
 import xmlReader.instructionReader;
 
@@ -22,6 +25,7 @@ public class GuiController {
     private Instructie huidigeInstructie, volgendeInstructie;
 	
 	private List<Proces>processen=new ArrayList<Proces>();
+	private PageTable pageTable;
 
 	private RAM RAM = new RAM();
 	
@@ -71,8 +75,6 @@ public class GuiController {
     @FXML
     private TableColumn<PageTableEntry, Integer> rPid;
     
-    @FXML
-    private TableColumn<PageTableEntry, Integer> ramPageLast;
     
     
     //pageTabel
@@ -101,8 +103,9 @@ public class GuiController {
 		instructionReader ir=new instructionReader();
 		instructies=ir.readIn("Instructions_30_3.xml");
 		setAantalInstructies(instructies.size());
-		init();
 		System.out.println(instructies.size());
+		init();
+		aanmakenRAM();
 	}
 
 	public void file2(){
@@ -111,8 +114,10 @@ public class GuiController {
 		instructionReader ir=new instructionReader();
 		instructies=ir.readIn("Instructions_20000_4.xml");
 		setAantalInstructies(instructies.size());
-		init();
 		System.out.println(instructies.size());
+		init();
+		aanmakenRAM();
+
 		
 
 	}
@@ -122,10 +127,13 @@ public class GuiController {
 		instructionReader ir=new instructionReader();
 		instructies=ir.readIn("Instructions_20000_20.xml");
 		setAantalInstructies(instructies.size());
-		init();
 		System.out.println(instructies.size());
+		init();
+		aanmakenRAM();
+
 		
 	}
+
 	private void init() {
 		timer.setText(String.valueOf(time));
 		vPid.setText(String.valueOf(instructies.peek().getPid()));
@@ -136,8 +144,19 @@ public class GuiController {
 		volgendeInstructie=instructies.remove();
 		
 	}
+	
+	public void aanmakenRAM() {
+		for(int i=0;i<12;i++){
+			ramTabel.getItems().add(new PageTableEntry(i,-1,-1));
+		}
+		rFrameNummer.setCellValueFactory(new PropertyValueFactory<>("frameNumber"));
+		rPageNummer.setCellValueFactory(new PropertyValueFactory<>("pageNumber"));
+		rPid.setCellValueFactory(new PropertyValueFactory<>("pid"));
+		aanmakenRAM();
+	}
 	public void eenInstructie(){
 		if(instructies!=null){
+			upTime();
 			System.out.println("1 instructie");
 			if(time<=aantalInstructies){
 				
@@ -162,7 +181,7 @@ public class GuiController {
 				vOffset.setText(String.valueOf(volgendeInstructie.getVirtueelAdres()%4096));
 			}
 		}
-        upTime();
+        
     }
 	
 	public void instructieUitvoeren(Instructie huidigeInstructie) {
@@ -182,6 +201,8 @@ public class GuiController {
 		processen.add(p);
 		
 	}
+
+
 	public void Read(Instructie huidigeInstructie, int time) {
 		System.out.println("read");
 		
@@ -204,6 +225,8 @@ public class GuiController {
 		
 		
 	}
+	
+
 
 
 
