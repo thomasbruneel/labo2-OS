@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.shape.Line?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="955.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.GuiController">
+<AnchorPane fx:id="log" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="955.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.GuiController">
    <children>
       <HBox prefHeight="25.0" prefWidth="1317.0">
          <children>
@@ -50,7 +50,7 @@
         </columns>
       </TableView>
       <Label layoutX="836.0" layoutY="264.0" prefHeight="17.0" prefWidth="85.0" text="RAM" />
-      <Label layoutX="37.0" layoutY="255.0" text="Page Table" />
+      <Label layoutX="37.0" layoutY="255.0" prefHeight="17.0" prefWidth="149.0" text="Page Table van proces:" />
       <Label layoutX="14.0" layoutY="111.0" prefHeight="17.0" prefWidth="104.0" text="huidige instructie:" />
       <Label layoutX="14.0" layoutY="160.0" prefHeight="17.0" prefWidth="149.0" text="volgende instructie:" />
       <Label layoutX="125.0" layoutY="111.0" text="PID:" />
@@ -80,5 +80,7 @@
       <TextField fx:id="wRam" layoutX="569.0" layoutY="40.0" prefHeight="25.0" prefWidth="74.0" />
       <Label layoutX="694.0" layoutY="44.0" text="wegschrijven naar disk: " />
       <TextField fx:id="wDisk" layoutX="819.0" layoutY="40.0" prefHeight="25.0" prefWidth="82.0" />
+      <TextField fx:id="log" layoutX="935.0" layoutY="657.0" />
+      <TextField fx:id="pidText" layoutX="169.0" layoutY="252.0" prefHeight="25.0" prefWidth="33.0" />
    </children>
 </AnchorPane>

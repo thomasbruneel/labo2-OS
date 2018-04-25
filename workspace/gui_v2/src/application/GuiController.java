@@ -32,6 +32,7 @@ public class GuiController {
 	
 	private List<PageTableEntry> pageTabel; // nodig voor pagetable op te stellen in GUI
 	
+	
 	//alle FXML textfields
 	@FXML
     private TextField timer;
@@ -63,6 +64,8 @@ public class GuiController {
     private TextField hOffset;
 	@FXML
     private TextField vOffset;
+	@FXML
+    private TextField pidText;
 	
 	
 	//RAM
@@ -159,8 +162,9 @@ public class GuiController {
 		rPageNummer.setCellValueFactory(new PropertyValueFactory<>("pageNumber"));
 		rPid.setCellValueFactory(new PropertyValueFactory<>("pid"));
 	}
-	public void aanmakenPageTabel() {
+	public void aanmakenPageTabel(int pid) {
 		pageTabel=new ArrayList<>();
+		pidText.setText(String.valueOf(pid));
 		for(int i=0;i<16;i++){
 			PageTableEntry pte=new PageTableEntry(i,-1,-1,-1,-1);  // pagenummer presentbit modifybit lastaccestime framenummer
 			pageTabel.add(pte);
@@ -217,7 +221,7 @@ public class GuiController {
 		System.out.println("start");
 		Proces p=new Proces(huidigeInstructie.getPid());
 		processen.add(p);
-		aanmakenPageTabel();
+		aanmakenPageTabel(huidigeInstructie.getPid());
 	}
 
 
