@@ -151,39 +151,17 @@ public class GuiController {
 		
 	}
 	
-	public void aanmakenRAM() {
-		ram=new ArrayList<>();
-		for(int i=0;i<12;i++){
-			PageTableEntry pte=new PageTableEntry(i,-1,-1);  // framenummer pid pagenummer
-			ram.add(pte);
-			ramTabelGui.getItems().add(pte); //GUI
-		}
-		rFrameNummer.setCellValueFactory(new PropertyValueFactory<>("frameNumber"));
-		rPageNummer.setCellValueFactory(new PropertyValueFactory<>("pageNumber"));
-		rPid.setCellValueFactory(new PropertyValueFactory<>("pid"));
-	}
-	public void aanmakenPageTabel(int pid) {
-		pageTabel=new ArrayList<>();
-		pidText.setText(String.valueOf(pid));
-		for(int i=0;i<16;i++){
-			PageTableEntry pte=new PageTableEntry(i,-1,-1,-1,-1);  // pagenummer presentbit modifybit lastaccestime framenummer
-			pageTabel.add(pte);
-			pageTabelGui.getItems().add(pte); //GUI
-		}
-		pPageNummer.setCellValueFactory(new PropertyValueFactory<>("pageNumber"));
-		pPresentBit.setCellValueFactory(new PropertyValueFactory<>("presentBit"));
-		pModifyBit.setCellValueFactory(new PropertyValueFactory<>("modifyBit"));
-		pLastAccesTime.setCellValueFactory(new PropertyValueFactory<>("lastAccessTime"));
-		pFrameNummer.setCellValueFactory(new PropertyValueFactory<>("frameNumber"));
-	}
+
 	public void eenInstructie(){
 		if(instructies!=null){
+
 		    if(!instructies.isEmpty()) {
-                upTime();
+	            upTime();
+	            timer.setText(String.valueOf(time));
                 System.out.println("1 instructie");
                 if (time <= aantalInstructies) {
 
-                    timer.setText(String.valueOf(time));
+                    
 
                     huidigeInstructie = volgendeInstructie;
 
@@ -221,6 +199,7 @@ public class GuiController {
 
 	public void Start(Instructie huidigeInstructie) {
 		System.out.println("start");
+		clearGuiPageTable();
 		//Proces p=new Proces(huidigeInstructie.getPid());   Hier krijg ik nullpointer
 		//processen.add(p);
 		//RAM.newProces(p,Integer.MAX_VALUE);
@@ -262,6 +241,33 @@ public class GuiController {
 		}
 		
 	}
+	public void aanmakenRAM() {
+		ram=new ArrayList<>();
+		for(int i=0;i<12;i++){
+			PageTableEntry pte=new PageTableEntry(i,-1,-1);  // framenummer pid pagenummer
+			ram.add(pte);
+			ramTabelGui.getItems().add(pte); //GUI
+		}
+		rFrameNummer.setCellValueFactory(new PropertyValueFactory<>("frameNumber"));
+		rPageNummer.setCellValueFactory(new PropertyValueFactory<>("pageNumber"));
+		rPid.setCellValueFactory(new PropertyValueFactory<>("pid"));
+	}
+	
+	public void aanmakenPageTabel(int pid) {
+		pageTabel=new ArrayList<>();
+		pidText.setText(String.valueOf(pid));
+		for(int i=0;i<16;i++){
+			PageTableEntry pte=new PageTableEntry(i,-1,-1,-1,-1);  // pagenummer presentbit modifybit lastaccestime framenummer
+			pageTabel.add(pte);
+			pageTabelGui.getItems().add(pte); //GUI
+		}
+		pPageNummer.setCellValueFactory(new PropertyValueFactory<>("pageNumber"));
+		pPresentBit.setCellValueFactory(new PropertyValueFactory<>("presentBit"));
+		pModifyBit.setCellValueFactory(new PropertyValueFactory<>("modifyBit"));
+		pLastAccesTime.setCellValueFactory(new PropertyValueFactory<>("lastAccessTime"));
+		pFrameNummer.setCellValueFactory(new PropertyValueFactory<>("frameNumber"));
+	}
+	
 	private void clear() {
 		instructies=null;
 		setTime(0);
@@ -283,6 +289,14 @@ public class GuiController {
 		for ( int i = 0; i<ramTabelGui.getItems().size(); i++) {	//tabel ram clearen
 		    ramTabelGui.getItems().clear();
 		}
+		
+	}
+	
+	public void clearGuiPageTable() {
+		for ( int i = 0; i<pageTabelGui.getItems().size(); i++) {	//pagetableGuiwissen
+			pageTabelGui.getItems().clear();
+		}
+		
 		
 	}
 	
