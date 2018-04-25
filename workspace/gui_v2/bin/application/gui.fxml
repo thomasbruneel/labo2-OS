@@ -20,9 +20,9 @@
               <menus>
                 <Menu mnemonicParsing="false" text="File">
                   <items>
-                    <MenuItem fx:id="f1" mnemonicParsing="false" onAction="#file1" text="Instructies_30_3" />
-                        <MenuItem fx:id="f2" mnemonicParsing="false" onAction="#file2" text="Instructies_20000_4" />
-                        <MenuItem fx:id="f3" mnemonicParsing="false" onAction="#file3" text="Instructies_20000_20" />
+                      <MenuItem fx:id="f1" mnemonicParsing="false" onAction="#file1" text="Instructies_30_3" />
+                      <MenuItem fx:id="f2" mnemonicParsing="false" onAction="#file2" text="Instructies_20000_4" />
+                      <MenuItem fx:id="f3" mnemonicParsing="false" onAction="#file3" text="Instructies_20000_20" />
                   </items>
                 </Menu>
               </menus>
@@ -31,26 +31,26 @@
       </HBox>
       <Button fx:id="eenInstructieKnop" layoutX="25.0" layoutY="40.0" mnemonicParsing="false" onAction="#eenInstructie" prefHeight="25.0" prefWidth="144.0" text="één instructie" />
       <Button fx:id="alleInstrucitiesKnop" layoutX="214.0" layoutY="40.0" mnemonicParsing="false" onAction="#allInstructie" prefHeight="25.0" prefWidth="144.0" text="alle instructies" />
-      <TableView fx:id="ramTabel" layoutX="156.0" layoutY="245.0" prefHeight="200.0" prefWidth="1005.0">
+      <TableView fx:id="ramTabel" layoutX="822.0" layoutY="284.0" prefHeight="331.0" prefWidth="374.0">
         <columns>
-          <TableColumn fx:id="rFrameNummer" prefWidth="141.0" text="Frame Nummer" />
-          <TableColumn fx:id="rPid" prefWidth="48.0" text="PID" />
+            <TableColumn fx:id="rFrameNummer" prefWidth="141.0" text="Frame Nummer" />
+            <TableColumn fx:id="rPid" prefWidth="48.0" text="PID" />
             <TableColumn fx:id="rPageNummer" prefWidth="187.0" text="Page Nummer" />
         </columns>
       </TableView>
       <Label layoutX="1098.0" layoutY="44.0" prefHeight="17.0" prefWidth="50.0" text="timer:" />
       <TextField fx:id="timer" layoutX="1141.0" layoutY="40.0" />
-      <TableView fx:id="pageTabel" layoutX="156.0" layoutY="507.0" prefHeight="200.0" prefWidth="1005.0">
+      <TableView fx:id="pageTabel" layoutX="39.0" layoutY="287.0" prefHeight="440.0" prefWidth="608.0">
         <columns>
-          <TableColumn fx:id="pPageNummer" prefWidth="108.0" text="Page Nummer" />
-          <TableColumn fx:id="pPresentBit" prefWidth="100.0" text="Present Bit" />
+            <TableColumn fx:id="pPageNummer" prefWidth="108.0" text="Page Nummer" />
+            <TableColumn fx:id="pPresentBit" prefWidth="100.0" text="Present Bit" />
             <TableColumn fx:id="pModifyBit" prefWidth="75.0" text="Modify Bit" />
             <TableColumn fx:id="pLastAccesTime" prefWidth="150.0" text="Last Access Time" />
             <TableColumn fx:id="pFrameNummer" prefWidth="171.0" text="Frame Nummer" />
         </columns>
       </TableView>
-      <Label layoutX="159.0" layoutY="228.0" prefHeight="17.0" prefWidth="85.0" text="RAM" />
-      <Label layoutX="156.0" layoutY="490.0" text="Page Table" />
+      <Label layoutX="836.0" layoutY="264.0" prefHeight="17.0" prefWidth="85.0" text="RAM" />
+      <Label layoutX="37.0" layoutY="255.0" text="Page Table" />
       <Label layoutX="14.0" layoutY="111.0" prefHeight="17.0" prefWidth="104.0" text="huidige instructie:" />
       <Label layoutX="14.0" layoutY="160.0" prefHeight="17.0" prefWidth="149.0" text="volgende instructie:" />
       <Label layoutX="125.0" layoutY="111.0" text="PID:" />
@@ -80,6 +80,5 @@
       <TextField fx:id="wRam" layoutX="569.0" layoutY="40.0" prefHeight="25.0" prefWidth="74.0" />
       <Label layoutX="694.0" layoutY="44.0" text="wegschrijven naar disk: " />
       <TextField fx:id="wDisk" layoutX="819.0" layoutY="40.0" prefHeight="25.0" prefWidth="82.0" />
-      <Label layoutX="658.0" layoutY="211.0" text="Label" />
    </children>
 </AnchorPane>

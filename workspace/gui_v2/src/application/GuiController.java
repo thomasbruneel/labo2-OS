@@ -152,7 +152,6 @@ public class GuiController {
 		rFrameNummer.setCellValueFactory(new PropertyValueFactory<>("frameNumber"));
 		rPageNummer.setCellValueFactory(new PropertyValueFactory<>("pageNumber"));
 		rPid.setCellValueFactory(new PropertyValueFactory<>("pid"));
-		aanmakenRAM();
 	}
 	public void eenInstructie(){
 		if(instructies!=null){
@@ -252,6 +251,9 @@ public class GuiController {
 		vOffset.setText("");
 		RAM.clear();
 		
+		for ( int i = 0; i<ramTabel.getItems().size(); i++) {	//tabel ram clearen
+		    ramTabel.getItems().clear();
+		}
 		
 	}
 	
