@@ -206,39 +206,37 @@ public class GuiController {
 	
 	public void instructieUitvoeren(Instructie huidigeInstructie) {
 		switch(huidigeInstructie.getOperatie()){
-			case "Start":Start(huidigeInstructie,time);break;
-			case "Read":Read(huidigeInstructie,time);break;
-			case "Write":Write(huidigeInstructie,time);break;
-			case "Terminate":Terminate(huidigeInstructie,time);break;
+			case "Start":Start(huidigeInstructie);break;
+			case "Read":Read(huidigeInstructie);break;
+			case "Write":Write(huidigeInstructie);break;
+			case "Terminate":Terminate(huidigeInstructie);break;
 		}
 		
 		
 	}
 	
-	public void Start(Instructie huidigeInstructie, int time) {
+	public void Start(Instructie huidigeInstructie) {
         System.out.println("start");
-        Proces p=new Proces(huidigeInstructie.getPid(), time);
+        Proces p=new Proces(huidigeInstructie.getPid());
+
         processen.add(p);
 
         RAM.newProces(p,Integer.MAX_VALUE);
-		System.out.println("start");
-		Proces p=new Proces(huidigeInstructie.getPid());
-		processen.add(p);
 		aanmakenPageTabel();
 	}
 
 
-	public void Read(Instructie huidigeInstructie, int time) {
+	public void Read(Instructie huidigeInstructie) {
 		System.out.println("read");
 		
 		
 	}
-	public void Write(Instructie huidigeInstructie, int time) {
+	public void Write(Instructie huidigeInstructie) {
 		System.out.println("write");
 		
 	}
 
-	public void Terminate(Instructie huidigeInstructie, int time) {
+	public void Terminate(Instructie huidigeInstructie) {
 		System.out.println("terminate");
 		Proces weg=null;
 		for(Proces p:processen){
