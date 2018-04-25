@@ -1,35 +1,20 @@
 package model;
 
+import java.util.ArrayList;
+
 public class Proces {
-	private int pid; 
-	private int lastAccesTime;
-	
+	private int pid;
+	private ArrayList<Page> pages;
+
 	
 	
 	public Proces(int pid){
 		this.pid=pid;
-		this.lastAccesTime=0;
+		for(int i=0;i<16;i++) pages.add(new Page());
 	}
 	
 	public int getPid() {
 		return pid;
 	}
-	public void setPid(int pid) {
-		this.pid = pid;
-	}
-	public int getLastAccesTime() {
-		return lastAccesTime;
-	}
-	public void setLastAccesTime(int lastAccesTime) {
-		this.lastAccesTime = lastAccesTime;
-	}
-	
-	
-	
-	
-	
-	
-	
-	
 
 }

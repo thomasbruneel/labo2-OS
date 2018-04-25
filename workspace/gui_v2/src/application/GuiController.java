@@ -155,31 +155,33 @@ public class GuiController {
 	}
 	public void eenInstructie(){
 		if(instructies!=null){
-			upTime();
-			System.out.println("1 instructie");
-			if(time<=aantalInstructies){
-				
-				timer.setText(String.valueOf(time));
-			
-				huidigeInstructie = volgendeInstructie;
-			
-				hPid.setText(String.valueOf(huidigeInstructie.getPid()));
-				hInstructie.setText(huidigeInstructie.getOperatie());
-				hVirtueelAdres.setText(String.valueOf(huidigeInstructie.getVirtueelAdres()));
-				hPageNummer.setText(String.valueOf(huidigeInstructie.getVirtueelAdres()/4096));
-				hOffset.setText(String.valueOf(huidigeInstructie.getVirtueelAdres()%4096));
-				
-				instructieUitvoeren(huidigeInstructie);
+		    if(!instructies.isEmpty()) {
+                upTime();
+                System.out.println("1 instructie");
+                if (time <= aantalInstructies) {
 
-				volgendeInstructie = instructies.remove();
-				
-				vPid.setText(String.valueOf(volgendeInstructie.getPid()));
-				vInstructie.setText(volgendeInstructie.getOperatie());
-				vVirtueelAdres.setText(String.valueOf(volgendeInstructie.getVirtueelAdres()));
-				vPageNummer.setText(String.valueOf(volgendeInstructie.getVirtueelAdres()/4096));
-				vOffset.setText(String.valueOf(volgendeInstructie.getVirtueelAdres()%4096));
-			}
-		}
+                    timer.setText(String.valueOf(time));
+
+                    huidigeInstructie = volgendeInstructie;
+
+                    hPid.setText(String.valueOf(huidigeInstructie.getPid()));
+                    hInstructie.setText(huidigeInstructie.getOperatie());
+                    hVirtueelAdres.setText(String.valueOf(huidigeInstructie.getVirtueelAdres()));
+                    hPageNummer.setText(String.valueOf(huidigeInstructie.getVirtueelAdres() / 4096));
+                    hOffset.setText(String.valueOf(huidigeInstructie.getVirtueelAdres() % 4096));
+
+                    instructieUitvoeren(huidigeInstructie);
+
+                    volgendeInstructie = instructies.remove();
+
+                    vPid.setText(String.valueOf(volgendeInstructie.getPid()));
+                    vInstructie.setText(volgendeInstructie.getOperatie());
+                    vVirtueelAdres.setText(String.valueOf(volgendeInstructie.getVirtueelAdres()));
+                    vPageNummer.setText(String.valueOf(volgendeInstructie.getVirtueelAdres() / 4096));
+                    vOffset.setText(String.valueOf(volgendeInstructie.getVirtueelAdres() % 4096));
+                }
+            } else System.out.println("Einde file");
+        } else timer.setText("Kies eerst een file aub");
         
     }
 	
@@ -195,10 +197,11 @@ public class GuiController {
 	}
 	
 	public void Start(Instructie huidigeInstructie, int time) {
-		System.out.println("start");
-		Proces p=new Proces(huidigeInstructie.getPid());
-		processen.add(p);
-		
+        System.out.println("start");
+        Proces p=new Proces(huidigeInstructie.getPid(), time);
+        processen.add(p);
+
+        RAM.newProces(p,Integer.MAX_VALUE);
 	}
 
 
@@ -222,7 +225,7 @@ public class GuiController {
 		}
 		processen.remove(weg);
 		
-		
+		RAM.terminate(weg);
 	}
 	
 
@@ -230,7 +233,9 @@ public class GuiController {
 
 
 	public void allInstructie(){
-		System.out.println("all instructie");
+		while(!instructies.isEmpty()){
+			//1instructie oproepen?
+		}
 		
 	}
 	private void clear() {
