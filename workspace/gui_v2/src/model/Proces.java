@@ -10,7 +10,7 @@ public class Proces {
 	
 	public Proces(int pid){
 		this.pid=pid;
-		for(int i=0;i<16;i++) pages.add(new Page());
+		for(int i=0;i<16;i++) pages.add(new Page(pid));
 	}
 	
 	public int getPid() {
