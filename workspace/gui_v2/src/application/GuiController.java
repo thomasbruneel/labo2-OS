@@ -178,64 +178,77 @@ public class GuiController {
 	}
 	public void eenInstructie(){
 		if(instructies!=null){
-			upTime();
-			System.out.println("1 instructie");
-			if(time<=aantalInstructies){
-				
-				timer.setText(String.valueOf(time));
-			
-				huidigeInstructie = volgendeInstructie;
-			
-				hPid.setText(String.valueOf(huidigeInstructie.getPid()));
-				hInstructie.setText(huidigeInstructie.getOperatie());
-				hVirtueelAdres.setText(String.valueOf(huidigeInstructie.getVirtueelAdres()));
-				hPageNummer.setText(String.valueOf(huidigeInstructie.getVirtueelAdres()/4096));
-				hOffset.setText(String.valueOf(huidigeInstructie.getVirtueelAdres()%4096));
-				
-				instructieUitvoeren(huidigeInstructie);
+		    if(!instructies.isEmpty()) {
+                upTime();
+                System.out.println("1 instructie");
+                if (time <= aantalInstructies) {
 
-				volgendeInstructie = instructies.remove();
-				
-				vPid.setText(String.valueOf(volgendeInstructie.getPid()));
-				vInstructie.setText(volgendeInstructie.getOperatie());
-				vVirtueelAdres.setText(String.valueOf(volgendeInstructie.getVirtueelAdres()));
-				vPageNummer.setText(String.valueOf(volgendeInstructie.getVirtueelAdres()/4096));
-				vOffset.setText(String.valueOf(volgendeInstructie.getVirtueelAdres()%4096));
-			}
-		}
+                    timer.setText(String.valueOf(time));
+
+                    huidigeInstructie = volgendeInstructie;
+
+                    hPid.setText(String.valueOf(huidigeInstructie.getPid()));
+                    hInstructie.setText(huidigeInstructie.getOperatie());
+                    hVirtueelAdres.setText(String.valueOf(huidigeInstructie.getVirtueelAdres()));
+                    hPageNummer.setText(String.valueOf(huidigeInstructie.getVirtueelAdres() / 4096));
+                    hOffset.setText(String.valueOf(huidigeInstructie.getVirtueelAdres() % 4096));
+
+                    instructieUitvoeren(huidigeInstructie);
+
+                    volgendeInstructie = instructies.remove();
+
+                    vPid.setText(String.valueOf(volgendeInstructie.getPid()));
+                    vInstructie.setText(volgendeInstructie.getOperatie());
+                    vVirtueelAdres.setText(String.valueOf(volgendeInstructie.getVirtueelAdres()));
+                    vPageNummer.setText(String.valueOf(volgendeInstructie.getVirtueelAdres() / 4096));
+                    vOffset.setText(String.valueOf(volgendeInstructie.getVirtueelAdres() % 4096));
+                }
+            } else System.out.println("Einde file");
+        } else timer.setText("Kies eerst een file aub");
         
     }
 	
 	public void instructieUitvoeren(Instructie huidigeInstructie) {
 		switch(huidigeInstructie.getOperatie()){
-			case "Start":Start(huidigeInstructie,time);break;
-			case "Read":Read(huidigeInstructie,time);break;
-			case "Write":Write(huidigeInstructie,time);break;
-			case "Terminate":Terminate(huidigeInstructie,time);break;
+			case "Start":Start(huidigeInstructie);break;
+			case "Read":Read(huidigeInstructie);break;
+			case "Write":Write(huidigeInstructie);break;
+			case "Terminate":Terminate(huidigeInstructie);break;
 		}
 		
 		
 	}
 	
+<<<<<<< HEAD
 	public void Start(Instructie huidigeInstructie, int time) {
 		System.out.println("start");
 		Proces p=new Proces(huidigeInstructie.getPid());
 		processen.add(p);
 		aanmakenPageTabel(huidigeInstructie.getPid());
+=======
+	public void Start(Instructie huidigeInstructie) {
+        System.out.println("start");
+        Proces p=new Proces(huidigeInstructie.getPid());
+
+        processen.add(p);
+
+        RAM.newProces(p,Integer.MAX_VALUE);
+		aanmakenPageTabel();
+>>>>>>> adb87933a1a42e677b959302094fc0d760155555
 	}
 
 
-	public void Read(Instructie huidigeInstructie, int time) {
+	public void Read(Instructie huidigeInstructie) {
 		System.out.println("read");
 		
 		
 	}
-	public void Write(Instructie huidigeInstructie, int time) {
+	public void Write(Instructie huidigeInstructie) {
 		System.out.println("write");
 		
 	}
 
-	public void Terminate(Instructie huidigeInstructie, int time) {
+	public void Terminate(Instructie huidigeInstructie) {
 		System.out.println("terminate");
 		Proces weg=null;
 		for(Proces p:processen){
@@ -245,7 +258,7 @@ public class GuiController {
 		}
 		processen.remove(weg);
 		
-		
+		RAM.terminate(weg);
 	}
 	
 
@@ -253,7 +266,9 @@ public class GuiController {
 
 
 	public void allInstructie(){
-		System.out.println("all instructie");
+		while(!instructies.isEmpty()){
+			//1instructie oproepen?
+		}
 		
 	}
 	private void clear() {
