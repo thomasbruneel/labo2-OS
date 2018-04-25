@@ -221,8 +221,9 @@ public class GuiController {
 
 	public void Start(Instructie huidigeInstructie) {
 		System.out.println("start");
-		Proces p=new Proces(huidigeInstructie.getPid());
-		processen.add(p);
+		//Proces p=new Proces(huidigeInstructie.getPid());   Hier krijg ik nullpointer
+		//processen.add(p);
+		//RAM.newProces(p,Integer.MAX_VALUE);
 		aanmakenPageTabel(huidigeInstructie.getPid());
 	}
  
