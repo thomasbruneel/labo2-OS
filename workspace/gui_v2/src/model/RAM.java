@@ -17,7 +17,7 @@ public class RAM {
 
     public int frmesPP(){return inRAM.size();}
 
-    
+
 
     public void clear() {
         frames = new ArrayList<>();

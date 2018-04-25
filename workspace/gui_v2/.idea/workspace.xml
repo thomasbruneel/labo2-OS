@@ -29,9 +29,25 @@
         <entry file="file://$PROJECT_DIR$/src/application/GuiController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="794">
-              <caret line="228" column="20" lean-forward="true" selection-start-line="228" selection-start-column="20" selection-end-line="228" selection-end-column="20" />
+              <caret line="229" column="20" lean-forward="true" selection-start-line="229" selection-start-column="20" selection-end-line="229" selection-end-column="20" />
               <folding>
                 <element signature="e#602#610#0" expanded="true" />
+                <marker date="1524637836136" expanded="true" signature="3394:4461" ph="{...}" />
+                <marker date="1524637836136" expanded="true" signature="4527:4802" ph="{...}" />
+                <marker date="1524637836136" expanded="true" signature="4864:4973" ph="{...}" />
+                <marker date="1524637836136" expanded="true" signature="5032:5072" ph="{...}" />
+                <marker date="1524637836136" expanded="true" signature="5132:5170" ph="{...}" />
+                <marker date="1524637836136" expanded="true" signature="5235:5418" ph="{...}" />
+                <marker date="1524637836136" expanded="true" signature="5450:5497" ph="{...}" />
+                <marker date="1524637836136" expanded="true" signature="5520:5884" ph="{...}" />
+                <marker date="1524637836136" expanded="false" signature="5908:5912" ph=" { " />
+                <marker date="1524637836136" expanded="false" signature="5970:5975" ph=" { " />
+                <marker date="1524637836136" expanded="false" signature="5987:5990" ph=" }" />
+                <marker date="1524637836136" expanded="false" signature="6021:6026" ph=" { " />
+                <marker date="1524637836136" expanded="false" signature="6043:6046" ph=" }" />
+                <marker date="1524637836136" expanded="false" signature="6081:6086" ph=" { " />
+                <marker date="1524637836136" expanded="false" signature="6111:6114" ph=" }" />
+                <marker date="1524637836136" expanded="false" signature="6219:6222" ph=" }" />
               </folding>
             </state>
           </provider>
@@ -51,7 +67,7 @@
         <entry file="file://$PROJECT_DIR$/src/model/RAM.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="399">
-              <caret line="19" column="4" lean-forward="true" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="4" />
+              <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -412,9 +428,25 @@
     <entry file="file://$PROJECT_DIR$/src/application/GuiController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="794">
-          <caret line="228" column="20" lean-forward="true" selection-start-line="228" selection-start-column="20" selection-end-line="228" selection-end-column="20" />
+          <caret line="229" column="20" lean-forward="true" selection-start-line="229" selection-start-column="20" selection-end-line="229" selection-end-column="20" />
           <folding>
             <element signature="e#602#610#0" expanded="true" />
+            <marker date="1524637836136" expanded="true" signature="3394:4461" ph="{...}" />
+            <marker date="1524637836136" expanded="true" signature="4527:4802" ph="{...}" />
+            <marker date="1524637836136" expanded="true" signature="4864:4973" ph="{...}" />
+            <marker date="1524637836136" expanded="true" signature="5032:5072" ph="{...}" />
+            <marker date="1524637836136" expanded="true" signature="5132:5170" ph="{...}" />
+            <marker date="1524637836136" expanded="true" signature="5235:5418" ph="{...}" />
+            <marker date="1524637836136" expanded="true" signature="5450:5497" ph="{...}" />
+            <marker date="1524637836136" expanded="true" signature="5520:5884" ph="{...}" />
+            <marker date="1524637836136" expanded="false" signature="5908:5912" ph=" { " />
+            <marker date="1524637836136" expanded="false" signature="5970:5975" ph=" { " />
+            <marker date="1524637836136" expanded="false" signature="5987:5990" ph=" }" />
+            <marker date="1524637836136" expanded="false" signature="6021:6026" ph=" { " />
+            <marker date="1524637836136" expanded="false" signature="6043:6046" ph=" }" />
+            <marker date="1524637836136" expanded="false" signature="6081:6086" ph=" { " />
+            <marker date="1524637836136" expanded="false" signature="6111:6114" ph=" }" />
+            <marker date="1524637836136" expanded="false" signature="6219:6222" ph=" }" />
           </folding>
         </state>
       </provider>
@@ -422,7 +454,7 @@
     <entry file="file://$PROJECT_DIR$/src/model/RAM.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="399">
-          <caret line="19" column="4" lean-forward="true" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="4" />
+          <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
