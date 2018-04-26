@@ -111,7 +111,7 @@ public class GuiController {
 		setAantalInstructies(instructies.size());
 		System.out.println(instructies.size());
 		init();
-		aanmakenRAM();
+		aanmakenRAMGui();
 	}
 
 	public void file2(){
@@ -122,7 +122,7 @@ public class GuiController {
 		setAantalInstructies(instructies.size());
 		System.out.println(instructies.size());
 		init();
-		aanmakenRAM();
+		aanmakenRAMGui();
 
 		
 
@@ -135,7 +135,7 @@ public class GuiController {
 		setAantalInstructies(instructies.size());
 		System.out.println(instructies.size());
 		init();
-		aanmakenRAM();
+		aanmakenRAMGui();
 
 		
 	}
@@ -241,7 +241,7 @@ public class GuiController {
 		}
 		
 	}
-	public void aanmakenRAM() {
+	public void aanmakenRAMGui() {
 		ram=new ArrayList<>();
 		for(int i=0;i<12;i++){
 			PageTableEntry pte=new PageTableEntry(i,-1,-1);  // framenummer pid pagenummer
