@@ -10,9 +10,10 @@ public class PageTableEntry {
 	private int lastAccessTime;
 	
 	public PageTableEntry(){
+		pid = -1;
 		presentBit = 0;
 		modifyBit = 0;
-		lastAccessTime = 0;
+		lastAccessTime = Integer.MAX_VALUE;
 		frameNumber = -1;
 	}
 	/*
@@ -82,9 +83,17 @@ public class PageTableEntry {
 	public void setLastAccessTime(int lastAccessTime) {
 		this.lastAccessTime = lastAccessTime;
 	}
-	
-	
-	
 
 
+	public boolean wasWritten() {
+		if (modifyBit == 0) return false;
+		return true;
+	}
+
+	public void reset() {
+		presentBit = 0;
+		modifyBit = 0;
+		lastAccessTime = Integer.MAX_VALUE;
+		frameNumber = -1;
+	}
 }

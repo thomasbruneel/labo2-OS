@@ -215,9 +215,9 @@ public class GuiController {
 		System.out.println("start");
 		Proces p=new Proces(huidigeInstructie.getPid());
 		processen.add(p);
-		//RAM.newProces(p,Integer.MAX_VALUE);
 		aanmakenPageTabel(huidigeInstructie.getPid());
 
+		RAM.makeRoom(p);
 
 	}
  
