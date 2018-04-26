@@ -28,7 +28,7 @@ public class GuiController {
 	
 	private RAM RAM = new RAM();
 	
-	private List<PageTableEntry> ram; // nodig voor ramtable op te stellen in GUI
+	private List<PageTableEntry> ramGUI; // nodig voor ramtable op te stellen in GUI
 	
 	private List<PageTableEntry> pageTabel; // nodig voor pagetable op te stellen in GUI
 	
@@ -242,10 +242,10 @@ public class GuiController {
 		
 	}
 	public void aanmakenRAMGui() {
-		ram=new ArrayList<>();
+		ramGUI=new ArrayList<>();
 		for(int i=0;i<12;i++){
 			PageTableEntry pte=new PageTableEntry(i,-1,-1);  // framenummer pid pagenummer
-			ram.add(pte);
+			ramGUI.add(pte);
 			ramTabelGui.getItems().add(pte); //GUI
 		}
 		rFrameNummer.setCellValueFactory(new PropertyValueFactory<>("frameNumber"));
