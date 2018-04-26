@@ -317,6 +317,7 @@ public class GuiController {
 		rPid.setCellValueFactory(new PropertyValueFactory<>("pid"));
 		
 		//-----update pagetableGUI------
+        pidText.setText(String.valueOf(huidigeInstructie.getPid()));
 		for(PageTableEntry pte:RAM.geefPageTableProces(huidigeInstructie.getPid())){
 			pageTabelGui.getItems().add(pte);
 
