@@ -22,4 +22,17 @@ public class Proces {
 		return pid;
 	}
 
+	public List<PageTableEntry> getPageTabel() {
+		return pageTabel;
+	}
+
+	public void setPageTabel(List<PageTableEntry> pageTabel) {
+		this.pageTabel = pageTabel;
+	}
+
+	public void setPid(int pid) {
+		this.pid = pid;
+	}
+	
+
 }
