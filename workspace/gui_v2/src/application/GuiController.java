@@ -285,11 +285,12 @@ public class GuiController {
 		//RAM.clear();
 
 		//updateGui();
-
+		clearGuiRamTable();
+		clearGuiPageTable();
+		pidText.setText("");
 		
-		for ( int i = 0; i<ramTabelGui.getItems().size(); i++) {	//tabel ram clearen
-		    ramTabelGui.getItems().clear();
-		}
+		
+
 		
 	}
 	
