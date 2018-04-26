@@ -28,7 +28,7 @@ public class GuiController {
 	
 	private RAM RAM = new RAM();
 	
-	private List<PageTableEntry> ram; // nodig voor ramtable op te stellen in GUI
+	private List<PageTableEntry> ramGUI; // nodig voor ramtable op te stellen in GUI
 	
 	private List<PageTableEntry> pageTabel; // nodig voor pagetable op te stellen in GUI
 	
@@ -154,10 +154,10 @@ public class GuiController {
 
 	public void eenInstructie(){
 		if(instructies!=null){
-
+            upTime();
+            timer.setText(String.valueOf(time));
 		    if(!instructies.isEmpty()) {
-	            upTime();
-	            timer.setText(String.valueOf(time));
+
                 System.out.println("1 instructie");
                 if (time <= aantalInstructies) {
 
@@ -181,7 +181,19 @@ public class GuiController {
                     vPageNummer.setText(String.valueOf(volgendeInstructie.getVirtueelAdres() / 4096));
                     vOffset.setText(String.valueOf(volgendeInstructie.getVirtueelAdres() % 4096));
                 }
-            } else System.out.println("Einde file");
+            } else{
+            	System.out.println("Einde file");
+
+                huidigeInstructie = volgendeInstructie;
+
+                hPid.setText(String.valueOf(huidigeInstructie.getPid()));
+                hInstructie.setText(huidigeInstructie.getOperatie());
+                hVirtueelAdres.setText(String.valueOf(huidigeInstructie.getVirtueelAdres()));
+                hPageNummer.setText(String.valueOf(huidigeInstructie.getVirtueelAdres() / 4096));
+                hOffset.setText(String.valueOf(huidigeInstructie.getVirtueelAdres() % 4096));
+
+                instructieUitvoeren(huidigeInstructie);
+            }
         } else timer.setText("Kies eerst een file aub");
         
     }
@@ -245,10 +257,10 @@ public class GuiController {
 		
 	}
 	public void aanmakenRAMGui() {
-		ram=new ArrayList<>();
+		ramGUI=new ArrayList<>();
 		for(int i=0;i<12;i++){
 			PageTableEntry pte=new PageTableEntry(i,-1,-1);  // framenummer pid pagenummer
-			ram.add(pte);
+			ramGUI.add(pte);
 			ramTabelGui.getItems().add(pte); //GUI
 		}
 		rFrameNummer.setCellValueFactory(new PropertyValueFactory<>("frameNumber"));
