@@ -311,21 +311,16 @@ public class GuiController {
 	
 	public void updateGui(){
 		//----update RAMGUI-------
-		//opvragen pagetableentry van RAM
-		List<PageTableEntry> lijstRam=RAM.getFrames();
-		for(int i=0;i<12;i++){
-			ramTabelGui.getItems().add(lijstRam.get(i));
+		for(PageTableEntry pte:RAM.getFrames()){
+			ramTabelGui.getItems().add(pte);
 		}
 		rFrameNummer.setCellValueFactory(new PropertyValueFactory<>("frameNumber"));
 		rPageNummer.setCellValueFactory(new PropertyValueFactory<>("pageNumber"));
 		rPid.setCellValueFactory(new PropertyValueFactory<>("pid"));
 		
 		//-----update pagetableGUI------
-		//opvragen pagetableentry van proces
-		List<PageTableEntry> lijstPageTableProces=RAM.geefPageTableProces(huidigeInstructie.getPid());
-		//List<PageTableEntry> lijstpt=null;
-		for(int i=0;i<16;i++){
-			//pageTabelGui.getItems().add(lijstpt.get(i));
+		for(PageTableEntry pte:RAM.geefPageTableProces(huidigeInstructie.getPid())){
+			pageTabelGui.getItems().add(pte);
 
 		}
 		pPageNummer.setCellValueFactory(new PropertyValueFactory<>("pageNumber"));
