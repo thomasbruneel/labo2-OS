@@ -41,6 +41,14 @@ public class PageTableEntry {
 		this.pid=pid;
 	}
 
+	PageTableEntry(int frameNumber){
+		pid = -1;
+		presentBit = 0;
+		modifyBit = 0;
+		lastAccessTime = Integer.MAX_VALUE;
+		this.frameNumber = frameNumber;
+	}
+
 	//getters en setters
 	public int getPid() {
 		return pid;

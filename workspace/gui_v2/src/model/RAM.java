@@ -13,7 +13,7 @@ public class RAM {
 
     public RAM() {
         frames = new ArrayList<>();
-        for(int i=0; i<12; i++) frames.add(new PageTableEntry());
+        for(int i=0; i<12; i++) frames.add(new PageTableEntry(i));
         inRAM = new ArrayList<>();
         naarRAM = 0;
         naarDISC = 0;
