@@ -220,6 +220,8 @@ public class GuiController {
 	}
 
 	public void io(int modifybit){
+		if(!RAM.hasProces(huidigeInstructie.getPid())) RAM.makeRoom(huidigeInstructie.getPid());
+		RAM.newInstruction(huidigeInstructie.getPid(),(int)huidigeInstructie.getVirtueelAdres()/4096,modifybit,time);
 
 	}
 

@@ -20,7 +20,11 @@ public class RAM {
         alleProcessen = new ArrayList<>();
     }
 
-    public boolean hasProces(Proces p){return inRAM.contains(p);}
+    public boolean hasProces(int pid){
+        boolean hasProces = false;
+        for (Proces p: inRAM) if (p.getPid() == pid) hasProces = true;
+        return hasProces;
+    }
 
     public void clear() {
         frames = new ArrayList<>();
@@ -52,6 +56,12 @@ public class RAM {
 
         }
         inRAM.add(proces);
+    }
+
+    public void makeRoom(int pid){
+        Proces proces = null;
+        for(Proces p:alleProcessen) if(p.getPid() == pid) proces = p;
+        makeRoom(proces);
     }
 
     private void sizeDown(Proces p) {
@@ -133,5 +143,36 @@ public class RAM {
     	}
 		return lijst;
     	
+    }
+
+    public void newInstruction(int pid, int pagenr, int modifybit, int time) {
+        if(!hasProces(pid)) System.out.println("GROTE FOUT!!!");
+        else {
+            Proces proces = null;
+            for(Proces p: alleProcessen) if(p.getPid() == pid) proces = p;
+            List<PageTableEntry> framesOfP = framesOfP(pid);
+            naarDISC++;
+            if(framesOfP.size() < 12/inRAM.size()){
+                addtoRam(proces.getPage(pagenr),modifybit,time);
+
+            } else {
+                PageTableEntry pte = lruProces(proces);
+                if(pte.wasWritten()) naarDISC++;
+                reset(pte);
+            }
+        }
+    }
+
+    private void addtoRam(PageTableEntry page, int modifybit, int time) {
+        page.setPresentBit(1);
+        if (page.getModifyBit() == 0) page.setModifyBit(modifybit);
+        page.setLastAccessTime(time);
+
+        boolean toegevoegd = false;
+        for(PageTableEntry frame:frames)
+            if (!toegevoegd && frame.getPageNumber() == -1){
+                frame = page;
+                toegevoegd = true;
+            }
     }
 }

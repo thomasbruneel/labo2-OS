@@ -33,6 +33,13 @@ public class Proces {
 	public void setPid(int pid) {
 		this.pid = pid;
 	}
-	
 
+
+	public PageTableEntry getPage(int pagenr) {
+		PageTableEntry pte = null;
+		for (PageTableEntry p: pageTabel){
+			if(p.getPageNumber() == pagenr) pte = p;
+		}
+		return pte;
+	}
 }
