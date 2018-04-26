@@ -13,7 +13,7 @@ public class RAM {
 
     public RAM() {
         frames = new ArrayList<>();
-        for(int i=0; i<12; i++) frames.add(new PageTableEntry(i));
+        for(int i=0; i<12; i++) frames.add(new PageTableEntry(i,-1,-1));
         inRAM = new ArrayList<>();
         naarRAM = 0;
         naarDISC = 0;
@@ -24,7 +24,7 @@ public class RAM {
 
     public void clear() {
         frames = new ArrayList<>();
-        for(int i=0; i<12; i++) frames.add(new PageTableEntry());
+        for(int i=0; i<12; i++) frames.add(new PageTableEntry(i));
         inRAM = new ArrayList<>();
         naarRAM = 0;
         naarDISC = 0;
@@ -46,7 +46,9 @@ public class RAM {
         }
         else{
 
-            for(Proces p:inRAM) sizeDown(p);
+            for(Proces p:inRAM) {
+                sizeDown(p);
+            }
 
         }
         inRAM.add(proces);
@@ -57,7 +59,7 @@ public class RAM {
         while (framesOfP.size() > 12/(inRAM.size()+1)) {
             PageTableEntry pte = lruProces(p);
             if(pte.wasWritten()) naarDISC++;
-            pte.reset();
+            reset(pte);
         }
     }
 
@@ -79,10 +81,16 @@ public class RAM {
         for(PageTableEntry pte:frames){
             if(pte.getPid() == pid) {
                 if(pte.wasWritten()) naarDISC++;
-                pte.reset();
+                reset(pte);
             }
         }
 
+    }
+
+    private void reset(PageTableEntry pte) {
+        pte.setFrameNumber(-1);
+        pte.setModifyBit(0);
+        pte.setPresentBit(0);
     }
 
     private PageTableEntry lruRAM() {

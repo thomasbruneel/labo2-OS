@@ -290,7 +290,8 @@ public class GuiController {
 		vVirtueelAdres.setText("");
 		vPageNummer.setText("");
 		vOffset.setText("");
-		RAM.clear();
+		//RAM.clear();
+		//updateGui();
 		
 		for ( int i = 0; i<ramTabelGui.getItems().size(); i++) {	//tabel ram clearen
 		    ramTabelGui.getItems().clear();
