@@ -153,9 +153,10 @@ public class GuiController {
 	
 
 	public void eenInstructie(){
+        upTime();
+        timer.setText(String.valueOf(time));
 		if(instructies!=null){
-            upTime();
-            timer.setText(String.valueOf(time));
+
 		    if(!instructies.isEmpty()) {
 
                 System.out.println("1 instructie");
@@ -200,14 +201,15 @@ public class GuiController {
 	
 	public void instructieUitvoeren(Instructie huidigeInstructie) {
         clearGuiPageTable();
-
+        clearGuiRamTable();
+        
         switch(huidigeInstructie.getOperatie()){
 			case "Start":Start(huidigeInstructie);break;
 			case "Read":Read(huidigeInstructie);break;
 			case "Write":Write(huidigeInstructie);break;
 			case "Terminate":Terminate(huidigeInstructie);break;
 		}
-		
+        updateGui();
 		
 	}
 
@@ -311,15 +313,43 @@ public class GuiController {
 		for ( int i = 0; i<pageTabelGui.getItems().size(); i++) {	//pagetableGuiwissen
 			pageTabelGui.getItems().clear();
 		}
-		
-		
+			
 	}
-	
+	public void clearGuiRamTable() {
+		for ( int i = 0; i<ramTabelGui.getItems().size(); i++) {	//pagetableGuiwissen
+			ramTabelGui.getItems().clear();
+		}
+			
+	}
 	public void upTime(){
 		time++;
 	}
 	
-	
+	public void updateGui(){
+		//----update RAMGUI-------
+		//opvragen pagetableentry van RAM
+		//List<PageTableEntry> lijstRam=
+		for(int i=0;i<12;i++){
+			//ramTabelGui.getItems().add(lijstRam.get(i));
+		}
+		rFrameNummer.setCellValueFactory(new PropertyValueFactory<>("frameNumber"));
+		rPageNummer.setCellValueFactory(new PropertyValueFactory<>("pageNumber"));
+		rPid.setCellValueFactory(new PropertyValueFactory<>("pid"));
+		
+		//-----update pagetableGUI------
+		//opvragen pagetableentry van proces
+		//List<PageTableEntry> lijstpt=
+		for(int i=0;i<16;i++){
+			//pageTabelGui.getItems().add(lijstpt.get(i));
+
+		}
+		pPageNummer.setCellValueFactory(new PropertyValueFactory<>("pageNumber"));
+		pPresentBit.setCellValueFactory(new PropertyValueFactory<>("presentBit"));
+		pModifyBit.setCellValueFactory(new PropertyValueFactory<>("modifyBit"));
+		pLastAccesTime.setCellValueFactory(new PropertyValueFactory<>("lastAccessTime"));
+		pFrameNummer.setCellValueFactory(new PropertyValueFactory<>("frameNumber")); 
+		
+	}
 	//getters en setters
 	public int getTime() {
 		return time;
@@ -334,5 +364,5 @@ public class GuiController {
 		this.aantalInstructies = aantalInstructies;
 	}
 
-
+	
 }
