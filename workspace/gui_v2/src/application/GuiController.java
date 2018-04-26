@@ -203,8 +203,8 @@ public class GuiController {
         
         switch(huidigeInstructie.getOperatie()){
 			case "Start":Start(huidigeInstructie);break;
-			case "Read":Read(huidigeInstructie);break;
-			case "Write":Write(huidigeInstructie);break;
+			case "Read":io(0);break;
+			case "Write":io(1);break;
 			case "Terminate":Terminate(huidigeInstructie);break;
 		}
         updateGui();
@@ -220,17 +220,9 @@ public class GuiController {
 		RAM.makeRoom(p);
 
 	}
- 
 
+	public void io(int modifybit){
 
-	public void Read(Instructie huidigeInstructie) {
-		System.out.println("read");
-		
-		
-	}
-	public void Write(Instructie huidigeInstructie) {
-		System.out.println("write");
-		
 	}
 
 	public void Terminate(Instructie huidigeInstructie) {
