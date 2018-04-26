@@ -169,10 +169,15 @@ public class RAM {
         page.setLastAccessTime(time);
 
         boolean toegevoegd = false;
-        for(PageTableEntry frame:frames)
-            if (!toegevoegd && frame.getPageNumber() == -1){
-                frame = page;
+        int frameTeVervangen = Integer.MAX_VALUE;
+        for(PageTableEntry frame:frames) {
+            if (!toegevoegd && frame.getPageNumber() == -1) {
+                frameTeVervangen = frame.getFrameNumber();
                 toegevoegd = true;
             }
+        }
+        frames.get(frameTeVervangen).setPid(page.getPid());
+        frames.get(frameTeVervangen).setPageNumber(page.getPageNumber());
     }
+
 }

@@ -255,7 +255,7 @@ public class GuiController {
 		pageTabel=new ArrayList<>();
 		pidText.setText(String.valueOf(pid));
 		for(int i=0;i<16;i++){
-			PageTableEntry pte=new PageTableEntry(i,-0,0,-1,-1);  // pagenummer presentbit modifybit lastaccestime framenummer
+			PageTableEntry pte=new PageTableEntry(pid,i,0,0,-1,-1);  // pagenummer presentbit modifybit lastaccestime framenummer
 			pageTabel.add(pte);
 			pageTabelGui.getItems().add(pte); //GUI
 		}

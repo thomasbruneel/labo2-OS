@@ -26,7 +26,8 @@ public class PageTableEntry {
 	}
 	*/
 	
-	public PageTableEntry(int pageNumber,int presentBit,int modifyBit,int lastAccessTime,int frameNumber) {	//nodig voor pagetable op te stellen 
+	public PageTableEntry(int pid, int pageNumber,int presentBit,int modifyBit,int lastAccessTime,int frameNumber) {	//nodig voor pagetable op te stellen
+		this.pid = pid;
 		this.pageNumber=pageNumber;
 		this.presentBit=presentBit;
 		this.modifyBit=modifyBit;

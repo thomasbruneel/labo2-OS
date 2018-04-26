@@ -13,7 +13,7 @@ public class Proces {
 		this.pid=pid;
 		pageTabel=new ArrayList<>();
 		for(int i=0;i<16;i++){
-			PageTableEntry pte=new PageTableEntry(i,0,0,-1,-1);
+			PageTableEntry pte=new PageTableEntry(pid,i,0,0,-1,-1);
 			pageTabel.add(pte);
 		}
 	}
