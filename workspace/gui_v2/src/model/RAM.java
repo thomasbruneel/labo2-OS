@@ -9,19 +9,26 @@ public class RAM {
     private List<Proces> inRAM;
     private int naarRAM;
     private int naarDISC;
+    private List<Proces> alleProcessen;
 
     public RAM() {
         frames = new ArrayList<>();
+        for(int i=0; i<12; i++) frames.add(new PageTableEntry());
         inRAM = new ArrayList<>();
         naarRAM = 0;
         naarDISC = 0;
+        alleProcessen = new ArrayList<>();
     }
 
     public boolean hasProces(Proces p){return inRAM.contains(p);}
 
     public void clear() {
         frames = new ArrayList<>();
+        for(int i=0; i<12; i++) frames.add(new PageTableEntry());
         inRAM = new ArrayList<>();
+        naarRAM = 0;
+        naarDISC = 0;
+        alleProcessen = new ArrayList<>();
     }
 
     public void terminate(Proces weg) {
@@ -100,5 +107,13 @@ public class RAM {
 
     public int getNaarDISC() {
         return naarDISC;
+    }
+
+    public List<Proces> getAlleProcessen() {
+        return alleProcessen;
+    }
+
+    public void newProces(Proces p) {
+        alleProcessen.add(p);
     }
 }

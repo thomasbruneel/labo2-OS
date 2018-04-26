@@ -23,9 +23,7 @@ public class GuiController {
 	private int aantalInstructies=0;
 
     private Instructie huidigeInstructie, volgendeInstructie;
-	
-	private List<Proces>processen=new ArrayList<Proces>();
-	
+
 	private RAM RAM = new RAM();
 	
 	private List<PageTableEntry> ramGUI; // nodig voor ramtable op te stellen in GUI
@@ -216,7 +214,7 @@ public class GuiController {
 	public void Start(Instructie huidigeInstructie) {
 		System.out.println("start");
 		Proces p=new Proces(huidigeInstructie.getPid());
-		processen.add(p);
+		RAM.newProces(p);
 		aanmakenPageTabel(huidigeInstructie.getPid());
 
 		RAM.makeRoom(p);
@@ -237,15 +235,6 @@ public class GuiController {
 
 	public void Terminate(Instructie huidigeInstructie) {
 		System.out.println("terminate");
-		Proces weg=null;
-		for(Proces p:processen){
-			if(p.getPid()==huidigeInstructie.getPid()){
-				weg=p;
-			}
-		}
-		processen.remove(weg);
-		
-		RAM.terminate(weg);
 	}
 	
 
