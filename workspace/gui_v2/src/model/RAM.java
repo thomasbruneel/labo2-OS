@@ -116,4 +116,14 @@ public class RAM {
     public void newProces(Proces p) {
         alleProcessen.add(p);
     }
+    public List<PageTableEntry> geefPageTableProces(int i){
+    	List<PageTableEntry> lijst=null;
+    	for(Proces p:alleProcessen){
+    		if(p.getPid()==i){
+    			lijst=p.getPageTabel();
+    		}
+    	}
+		return lijst;
+    	
+    }
 }

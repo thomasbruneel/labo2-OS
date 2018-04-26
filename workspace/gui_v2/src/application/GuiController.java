@@ -290,7 +290,7 @@ public class GuiController {
 		vVirtueelAdres.setText("");
 		vPageNummer.setText("");
 		vOffset.setText("");
-		RAM.clear();
+		//RAM.clear();
 		
 		for ( int i = 0; i<ramTabelGui.getItems().size(); i++) {	//tabel ram clearen
 		    ramTabelGui.getItems().clear();
@@ -327,6 +327,7 @@ public class GuiController {
 		
 		//-----update pagetableGUI------
 		//opvragen pagetableentry van proces
+		List<PageTableEntry> lijstPageTableProces=RAM.geefPageTableProces(huidigeInstructie.getPid());
 		//List<PageTableEntry> lijstpt=null;
 		for(int i=0;i<16;i++){
 			//pageTabelGui.getItems().add(lijstpt.get(i));
