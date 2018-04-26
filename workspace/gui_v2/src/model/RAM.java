@@ -86,5 +86,19 @@ public class RAM {
         return pte;
     }
 
+    public List<PageTableEntry> getFrames() {
+        return frames;
+    }
 
+    public List<Proces> getInRAM() {
+        return inRAM;
+    }
+
+    public int getNaarRAM() {
+        return naarRAM;
+    }
+
+    public int getNaarDISC() {
+        return naarDISC;
+    }
 }
