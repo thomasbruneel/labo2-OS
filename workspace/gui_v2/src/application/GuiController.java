@@ -291,10 +291,9 @@ public class GuiController {
 		vPageNummer.setText("");
 		vOffset.setText("");
 		//RAM.clear();
-<<<<<<< HEAD
-=======
+
 		//updateGui();
->>>>>>> 64c7cadfaae121d61d553ca2dcca10ee41be9e57
+
 		
 		for ( int i = 0; i<ramTabelGui.getItems().size(); i++) {	//tabel ram clearen
 		    ramTabelGui.getItems().clear();
