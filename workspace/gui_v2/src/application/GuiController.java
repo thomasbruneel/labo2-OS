@@ -274,7 +274,7 @@ public class GuiController {
 		pageTabel=new ArrayList<>();
 		pidText.setText(String.valueOf(pid));
 		for(int i=0;i<16;i++){
-			PageTableEntry pte=new PageTableEntry(i,-1,-1,-1,-1);  // pagenummer presentbit modifybit lastaccestime framenummer
+			PageTableEntry pte=new PageTableEntry(i,-0,0,-1,-1);  // pagenummer presentbit modifybit lastaccestime framenummer
 			pageTabel.add(pte);
 			pageTabelGui.getItems().add(pte); //GUI
 		}
@@ -328,9 +328,9 @@ public class GuiController {
 	public void updateGui(){
 		//----update RAMGUI-------
 		//opvragen pagetableentry van RAM
-		//List<PageTableEntry> lijstRam=
+		List<PageTableEntry> lijstRam=RAM.getFrames();
 		for(int i=0;i<12;i++){
-			//ramTabelGui.getItems().add(lijstRam.get(i));
+			ramTabelGui.getItems().add(lijstRam.get(i));
 		}
 		rFrameNummer.setCellValueFactory(new PropertyValueFactory<>("frameNumber"));
 		rPageNummer.setCellValueFactory(new PropertyValueFactory<>("pageNumber"));
@@ -338,7 +338,7 @@ public class GuiController {
 		
 		//-----update pagetableGUI------
 		//opvragen pagetableentry van proces
-		//List<PageTableEntry> lijstpt=
+		//List<PageTableEntry> lijstpt=null;
 		for(int i=0;i<16;i++){
 			//pageTabelGui.getItems().add(lijstpt.get(i));
 
