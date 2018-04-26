@@ -187,7 +187,9 @@ public class GuiController {
     }
 	
 	public void instructieUitvoeren(Instructie huidigeInstructie) {
-		switch(huidigeInstructie.getOperatie()){
+        clearGuiPageTable();
+
+        switch(huidigeInstructie.getOperatie()){
 			case "Start":Start(huidigeInstructie);break;
 			case "Read":Read(huidigeInstructie);break;
 			case "Write":Write(huidigeInstructie);break;
@@ -199,11 +201,12 @@ public class GuiController {
 
 	public void Start(Instructie huidigeInstructie) {
 		System.out.println("start");
-		clearGuiPageTable();
 		Proces p=new Proces(huidigeInstructie.getPid());
 		processen.add(p);
 		//RAM.newProces(p,Integer.MAX_VALUE);
 		aanmakenPageTabel(huidigeInstructie.getPid());
+
+
 	}
  
 
