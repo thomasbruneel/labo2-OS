@@ -7,8 +7,6 @@ public class Proces {
 	private int pid;
 	private List<PageTableEntry> pageTabel; 
 
-	
-	
 	public Proces(int pid) {
 		this.pid=pid;
 		pageTabel=new ArrayList<>();
@@ -25,15 +23,6 @@ public class Proces {
 	public List<PageTableEntry> getPageTabel() {
 		return pageTabel;
 	}
-
-	public void setPageTabel(List<PageTableEntry> pageTabel) {
-		this.pageTabel = pageTabel;
-	}
-
-	public void setPid(int pid) {
-		this.pid = pid;
-	}
-
 
 	public PageTableEntry getPage(int pagenr) {
 		PageTableEntry pte = null;
