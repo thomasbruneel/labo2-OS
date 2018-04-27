@@ -50,6 +50,15 @@ public class PageTableEntry {
 		this.frameNumber = frameNumber;
 	}
 
+	public PageTableEntry(PageTableEntry page) {
+		this.pid = page.pid;
+		this.presentBit = page.presentBit;
+		this.frameNumber = page.frameNumber;
+		this.modifyBit = page.modifyBit;
+		this.lastAccessTime = page.lastAccessTime;
+		this.pageNumber = page.pageNumber;
+	}
+
 	//getters en setters
 	public int getPid() {
 		return pid;

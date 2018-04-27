@@ -151,14 +151,28 @@ public class RAM {
             Proces proces = null;
             for(Proces p: alleProcessen) if(p.getPid() == pid) proces = p;
             List<PageTableEntry> framesOfP = framesOfP(pid);
-            naarDISC++;
-            if(framesOfP.size() < 12/inRAM.size()){
-                addtoRam(proces.getPage(pagenr),modifybit,time);
 
+            Boolean inRam = false;
+            int framenr = -1;
+            for(PageTableEntry frame: frames){
+                if(frame.getPageNumber() == pagenr){
+                    inRam = true;
+                    framenr = frame.getFrameNumber();
+                }
+            }
+
+            if(inRam){
+                PageTableEntry page = proces.getPage(pagenr);
+                page.setLastAccessTime(time);
+                if(page.getModifyBit() == 0) page.setModifyBit(modifybit);
             } else {
-                PageTableEntry pte = lruProces(proces);
-                if(pte.wasWritten()) naarDISC++;
-                reset(pte);
+                naarDISC++;
+                if(framesOfP.size() < 12/inRAM.size()){
+                    addtoRam(proces.getPage(pagenr),modifybit,time);
+
+                } else {
+                    
+                }
             }
         }
     }
@@ -170,14 +184,14 @@ public class RAM {
 
         boolean toegevoegd = false;
         int frameTeVervangen = Integer.MAX_VALUE;
-        for(PageTableEntry frame:frames) {
+        for(PageTableEntry frame:frames) {                  //Framecontrole?
             if (!toegevoegd && frame.getPageNumber() == -1) {
                 frameTeVervangen = frame.getFrameNumber();
                 toegevoegd = true;
             }
         }
-        frames.get(frameTeVervangen).setPid(page.getPid());
-        frames.get(frameTeVervangen).setPageNumber(page.getPageNumber());
+        page.setFrameNumber(frameTeVervangen);
+        frames.set(frameTeVervangen, new PageTableEntry(page));
     }
 
 }
