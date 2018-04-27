@@ -234,8 +234,8 @@ public class GuiController {
 
 
 	public void allInstructie(){
-		while(!instructies.isEmpty()){
-			//1instructie oproepen?
+		for(int i=0;i<aantalInstructies;i++){
+			eenInstructie();
 		}
 		
 	}
@@ -329,7 +329,11 @@ public class GuiController {
 		pPresentBit.setCellValueFactory(new PropertyValueFactory<>("presentBit"));
 		pModifyBit.setCellValueFactory(new PropertyValueFactory<>("modifyBit"));
 		pLastAccesTime.setCellValueFactory(new PropertyValueFactory<>("lastAccessTime"));
-		pFrameNummer.setCellValueFactory(new PropertyValueFactory<>("frameNumber")); 
+		pFrameNummer.setCellValueFactory(new PropertyValueFactory<>("frameNumber"));
+		
+		//update wegschrijven naar RAM en Disk
+		wRam.setText(String.valueOf(RAM.getNaarRAM()));
+		wDisk.setText(String.valueOf(RAM.getNaarDISC()));
 		
 	}
 	//getters en setters
