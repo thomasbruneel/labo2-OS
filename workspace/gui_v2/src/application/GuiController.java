@@ -24,7 +24,7 @@ public class GuiController {
 
     private Instructie huidigeInstructie, volgendeInstructie;
 
-	private RAM RAM = new RAM();
+	private RAM RAM;
 	
 	private List<PageTableEntry> ramGUI; // nodig voor ramtable op te stellen in GUI
 	
@@ -65,7 +65,7 @@ public class GuiController {
     private TextField pidText;
 	
 	
-	//RAM
+	//RAM tabel view
     @FXML
     private TableView<PageTableEntry> ramTabelGui;
     
@@ -80,7 +80,7 @@ public class GuiController {
     
     
     
-    //pageTabel
+    //pageTabel  view
     @FXML
     private TableView<PageTableEntry> pageTabelGui;
     
@@ -109,6 +109,8 @@ public class GuiController {
 		System.out.println(instructies.size());
 		init();
 		aanmakenRAMGui();
+		RAM=new RAM();
+		
 	}
 
 	public void file2(){
@@ -120,9 +122,7 @@ public class GuiController {
 		System.out.println(instructies.size());
 		init();
 		aanmakenRAMGui();
-
-		
-
+		RAM=new RAM();
 	}
 	public void file3(){
 		System.out.println("file3");
@@ -133,10 +133,9 @@ public class GuiController {
 		System.out.println(instructies.size());
 		init();
 		aanmakenRAMGui();
-
-		
+		RAM=new RAM();	
 	}
-
+	// eerste instructie laden
 	private void init() {
 		timer.setText(String.valueOf(time));
 		vPid.setText(String.valueOf(instructies.peek().getPid()));
@@ -148,7 +147,7 @@ public class GuiController {
 		
 	}
 	
-
+	// methode gekoppeld aan button als men instructie per instructie wil inladen
 	public void eenInstructie(){
 		if(instructies!=null){
 
@@ -187,12 +186,25 @@ public class GuiController {
                 hVirtueelAdres.setText(String.valueOf(huidigeInstructie.getVirtueelAdres()));
                 hPageNummer.setText(String.valueOf(huidigeInstructie.getVirtueelAdres() / 4096));
                 hOffset.setText(String.valueOf(huidigeInstructie.getVirtueelAdres() % 4096));
+                
+                vPid.setText("");
+                vInstructie.setText("");
+                vVirtueelAdres.setText("");
+                vPageNummer.setText("");
+                vOffset.setText("");
 
                 instructieUitvoeren(huidigeInstructie);
             }
         } else timer.setText("Kies eerst een file aub");
         
     }
+	// methode gekoppeld aan button als men instructies in één keer wilt uitvoeren
+	public void allInstructie(){
+		for(int i=0;i<aantalInstructies;i++){
+			eenInstructie();
+		}
+		
+	}
 	
 	public void instructieUitvoeren(Instructie huidigeInstructie) {
         clearGuiPageTable();
@@ -226,16 +238,7 @@ public class GuiController {
 		RAM.terminate(huidigeInstructie.getPid());
 	}
 	
-
-
-
-
-	public void allInstructie(){
-		for(int i=0;i<aantalInstructies;i++){
-			eenInstructie();
-		}
-		
-	}
+	// initieel GUI ram table aanmaken
 	public void aanmakenRAMGui() {
 		ramGUI=new ArrayList<>();
 		for(int i=0;i<12;i++){
@@ -247,7 +250,8 @@ public class GuiController {
 		rPageNummer.setCellValueFactory(new PropertyValueFactory<>("pageNumber"));
 		rPid.setCellValueFactory(new PropertyValueFactory<>("pid"));
 	}
-
+	
+	//textfields clearen en timer terug op 0 zetten
 	private void clear() {
 		instructies=null;
 		setTime(0);
@@ -264,18 +268,13 @@ public class GuiController {
 		vVirtueelAdres.setText("");
 		vPageNummer.setText("");
 		vOffset.setText("");
-		//RAM.clear();
-
-		//updateGui();
+		
 		clearGuiRamTable();
 		clearGuiPageTable();
-		pidText.setText("");
 		
+		pidText.setText("");
 		wRam.setText("0");
 		wDisk.setText("0");
-		
-		
-
 		
 	}
 	
@@ -295,10 +294,11 @@ public class GuiController {
 		time++;
 	}
 	
+	// na elke instructie wordt de tableviews van de pagetable van het huidig proces en de ram geupdate
 	public void updateGui(){
-		//----update RAMGUI-------
 		timer.setText(String.valueOf(time));
-
+		
+		//----update RAMGUI-------
 		for(PageTableEntry pte:RAM.getFrames()){
 			ramTabelGui.getItems().add(pte);
 		}
@@ -306,7 +306,7 @@ public class GuiController {
 		rPageNummer.setCellValueFactory(new PropertyValueFactory<>("pageNumber"));
 		rPid.setCellValueFactory(new PropertyValueFactory<>("pid"));
 		
-		//-----update pagetableGUI------
+		//-----update pagetableGUI van huidig proces------
         pidText.setText(String.valueOf(huidigeInstructie.getPid()));
 		for(PageTableEntry pte:RAM.geefPageTableProces(huidigeInstructie.getPid())){
 			pageTabelGui.getItems().add(pte);
