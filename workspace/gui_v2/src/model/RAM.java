@@ -35,7 +35,10 @@ public class RAM {
         alleProcessen = new ArrayList<>();
     }
 
-    public void terminate(Proces weg) {
+    public void terminate(int weg) {
+        Proces proces = null;
+        for(Proces p:alleProcessen) if(p.getPid() == weg) proces = p;
+        removeFromRAM(proces);
     }
 
     public void makeRoom(Proces proces) {
@@ -45,7 +48,6 @@ public class RAM {
             for (Proces p:inRAM){
                 if(p.getPid() == pte.getPid()) procesToRemove = p;
             }
-            inRAM.remove(procesToRemove);
             removeFromRAM(procesToRemove);
         }
         else{
@@ -203,6 +205,7 @@ public class RAM {
                 removePageFromRAM(page);
             }
         }
+        inRAM.remove(procesToRemove);
     }
 
     private void removePageFromRAM(PageTableEntry pageToRemove) {

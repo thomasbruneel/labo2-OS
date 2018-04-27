@@ -152,15 +152,11 @@ public class GuiController {
 	public void eenInstructie(){
 		if(instructies!=null){
 
-		    if(!instructies.isEmpty()) {
+			if(!instructies.isEmpty()) {
 
-                System.out.println("1 instructie");
+				upTime();
+				System.out.println("1 instructie");
                 if (time <= aantalInstructies) {
-                    upTime();
-                    timer.setText(String.valueOf(time));
-
-                    
-
                     huidigeInstructie = volgendeInstructie;
 
                     hPid.setText(String.valueOf(huidigeInstructie.getPid()));
@@ -180,7 +176,9 @@ public class GuiController {
                     vOffset.setText(String.valueOf(volgendeInstructie.getVirtueelAdres() % 4096));
                 }
             } else{
-            	System.out.println("Einde file");
+				upTime();
+
+				System.out.println("Einde file");
 
                 huidigeInstructie = volgendeInstructie;
 
@@ -225,7 +223,7 @@ public class GuiController {
 	}
 
 	public void Terminate(Instructie huidigeInstructie) {
-		System.out.println("terminate");
+		RAM.terminate(huidigeInstructie.getPid());
 	}
 	
 
@@ -299,6 +297,8 @@ public class GuiController {
 	
 	public void updateGui(){
 		//----update RAMGUI-------
+		timer.setText(String.valueOf(time));
+
 		for(PageTableEntry pte:RAM.getFrames()){
 			ramTabelGui.getItems().add(pte);
 		}
