@@ -41,19 +41,17 @@ public class RAM {
     public void makeRoom(Proces proces) {
         if(inRAM.size() == 4){
             PageTableEntry pte = lruRAM();
-            Proces dummy = null;
+            Proces procesToRemove = null;
             for (Proces p:inRAM){
-                if(p.getPid() == pte.getPid()) dummy = p;
+                if(p.getPid() == pte.getPid()) procesToRemove = p;
             }
-            inRAM.remove(dummy);
-            handleWrite(dummy.getPid());
+            inRAM.remove(procesToRemove);
+            removeFromRAM(procesToRemove);
         }
         else{
-
             for(Proces p:inRAM) {
                 sizeDown(p);
             }
-
         }
         inRAM.add(proces);
     }
@@ -68,8 +66,8 @@ public class RAM {
         List<PageTableEntry> framesOfP = framesOfP(p.getPid());
         while (framesOfP.size() > 12/(inRAM.size()+1)) {
             PageTableEntry pte = lruProces(p);
-            if(pte.wasWritten()) naarDISC++;
-            reset(pte);
+            removePageFromRAM(pte);
+            framesOfP = framesOfP(p.getPid());
         }
     }
 
@@ -155,18 +153,7 @@ public class RAM {
                 } else {
                     PageTableEntry pageToRemove = lruProces(proces);
 
-                    pageToRemove.setPresentBit(0);
-                    pageToRemove.setFrameNumber(-1);
-                    if(pageToRemove.getModifyBit() == 1) naarDISC++;
-                    pageToRemove.setModifyBit(0);
-
-                    int frameToReset = -1;
-                    for (PageTableEntry frame: framesOfP){
-                        if(frame.getPid() == pageToRemove.getPid() && frame.getPageNumber() == pageToRemove.getPageNumber()){
-                            frameToReset = frame.getFrameNumber();
-                        }
-                    }
-                    frames.set(frameToReset, new PageTableEntry(frameToReset,-1,-1));
+                    removePageFromRAM(pageToRemove);
 
                     addtoRam(page);
                 }
@@ -203,11 +190,34 @@ public class RAM {
 
 
     private PageTableEntry lruRAM() {
-        PageTableEntry pte = new PageTableEntry();
-        for (PageTableEntry p: frames){
-            if(pte.getLastAccessTime() > p.getLastAccessTime()) pte = p;
+        PageTableEntry lru = new PageTableEntry();
+        for (PageTableEntry frame: frames){
+            if(lru.getLastAccessTime() > frame.getLastAccessTime()) lru = frame;
         }
-        return pte;
+        return lru;
+    }
+
+    private void removeFromRAM(Proces procesToRemove) {
+        for (PageTableEntry page:procesToRemove.getPageTabel()){
+            if(page.getPresentBit() == 1){
+                removePageFromRAM(page);
+            }
+        }
+    }
+
+    private void removePageFromRAM(PageTableEntry pageToRemove) {
+        pageToRemove.setPresentBit(0);
+        pageToRemove.setFrameNumber(-1);
+        if(pageToRemove.getModifyBit() == 1) naarDISC++;
+        pageToRemove.setModifyBit(0);
+
+        int frameToReset = -1;
+        for (PageTableEntry frame: frames){
+            if(frame.getPid() == pageToRemove.getPid() && frame.getPageNumber() == pageToRemove.getPageNumber()){
+                frameToReset = frame.getFrameNumber();
+            }
+        }
+        frames.set(frameToReset, new PageTableEntry(frameToReset,-1,-1));
     }
 
 }
