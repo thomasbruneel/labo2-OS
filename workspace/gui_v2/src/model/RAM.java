@@ -73,14 +73,6 @@ public class RAM {
         }
     }
 
-    private PageTableEntry lruProces(Proces proces) {
-        PageTableEntry pte = new PageTableEntry();
-        for (PageTableEntry p: frames){
-            if((pte.getLastAccessTime() > p.getLastAccessTime()) && (p.getPid() == proces.getPid())) pte = p;
-        }
-        return pte;
-    }
-
     private List<PageTableEntry> framesOfP(int pid) {
         List<PageTableEntry>  framesOfP= new ArrayList<>();
         for(PageTableEntry pte:frames) if(pte.getPid() == pid) framesOfP.add(pte);
@@ -101,14 +93,6 @@ public class RAM {
         pte.setFrameNumber(-1);
         pte.setModifyBit(0);
         pte.setPresentBit(0);
-    }
-
-    private PageTableEntry lruRAM() {
-        PageTableEntry pte = new PageTableEntry();
-        for (PageTableEntry p: frames){
-            if(pte.getLastAccessTime() > p.getLastAccessTime()) pte = p;
-        }
-        return pte;
     }
 
     public List<PageTableEntry> getFrames() {
@@ -153,38 +137,48 @@ public class RAM {
             List<PageTableEntry> framesOfP = framesOfP(pid);
 
             Boolean inRam = false;
-            int framenr = -1;
-            for(PageTableEntry frame: frames){
+            for(PageTableEntry frame: framesOfP){
                 if(frame.getPageNumber() == pagenr){
                     inRam = true;
-                    framenr = frame.getFrameNumber();
                 }
             }
 
-            if(inRam){
-                PageTableEntry page = proces.getPage(pagenr);
-                page.setLastAccessTime(time);
-                if(page.getModifyBit() == 0) page.setModifyBit(modifybit);
-            } else {
-                naarDISC++;
-                if(framesOfP.size() < 12/inRAM.size()){
-                    addtoRam(proces.getPage(pagenr),modifybit,time);
+            PageTableEntry page = proces.getPage(pagenr);
+            page.setPresentBit(1);
+            if (page.getModifyBit() == 0) page.setModifyBit(modifybit);
+            page.setLastAccessTime(time);
 
+            if(!inRam){
+                naarRAM++;
+                if(framesOfP.size() < 12/inRAM.size()){
+                    addtoRam(page);
                 } else {
-                    
+                    PageTableEntry pageToRemove = lruProces(proces);
+
+                    pageToRemove.setPresentBit(0);
+                    pageToRemove.setFrameNumber(-1);
+                    if(pageToRemove.getModifyBit() == 1) naarDISC++;
+                    pageToRemove.setModifyBit(0);
+
+                    int frameToReset = -1;
+                    for (PageTableEntry frame: framesOfP){
+                        if(frame.getPid() == pageToRemove.getPid() && frame.getPageNumber() == pageToRemove.getPageNumber()){
+                            frameToReset = frame.getFrameNumber();
+                        }
+                    }
+                    frames.set(frameToReset, new PageTableEntry(frameToReset,-1,-1));
+
+                    addtoRam(page);
                 }
             }
         }
     }
 
-    private void addtoRam(PageTableEntry page, int modifybit, int time) {
-        page.setPresentBit(1);
-        if (page.getModifyBit() == 0) page.setModifyBit(modifybit);
-        page.setLastAccessTime(time);
+    private void addtoRam(PageTableEntry page) {
 
         boolean toegevoegd = false;
         int frameTeVervangen = Integer.MAX_VALUE;
-        for(PageTableEntry frame:frames) {                  //Framecontrole?
+        for(PageTableEntry frame:frames) {
             if (!toegevoegd && frame.getPageNumber() == -1) {
                 frameTeVervangen = frame.getFrameNumber();
                 toegevoegd = true;
@@ -192,6 +186,28 @@ public class RAM {
         }
         page.setFrameNumber(frameTeVervangen);
         frames.set(frameTeVervangen, new PageTableEntry(page));
+    }
+
+    private PageTableEntry lruProces(Proces proces) {
+        PageTableEntry pageToRemove = new PageTableEntry();
+        for(PageTableEntry page : proces.getPageTabel()){
+            if(page.getPresentBit() == 1){
+                if(page.getLastAccessTime() < pageToRemove.getLastAccessTime()){
+                    pageToRemove = page;
+                }
+            }
+        }
+
+        return pageToRemove;
+    }
+
+
+    private PageTableEntry lruRAM() {
+        PageTableEntry pte = new PageTableEntry();
+        for (PageTableEntry p: frames){
+            if(pte.getLastAccessTime() > p.getLastAccessTime()) pte = p;
+        }
+        return pte;
     }
 
 }
