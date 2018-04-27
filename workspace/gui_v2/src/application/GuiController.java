@@ -254,7 +254,7 @@ public class GuiController {
 		instructies=null;
 		setTime(0);
 		setAantalInstructies(0);
-		timer.setText("");
+		timer.setText("0");
 		hPid.setText("");
 		hInstructie.setText("");
 		hVirtueelAdres.setText("");
@@ -272,6 +272,9 @@ public class GuiController {
 		clearGuiRamTable();
 		clearGuiPageTable();
 		pidText.setText("");
+		
+		wRam.setText("0");
+		wDisk.setText("0");
 		
 		
 
