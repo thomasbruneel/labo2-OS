@@ -28,7 +28,6 @@ public class GuiController {
 	
 	private List<PageTableEntry> ramGUI; // nodig voor ramtable op te stellen in GUI
 	
-	private List<PageTableEntry> pageTabel; // nodig voor pagetable op te stellen in GUI
 	
 	
 	//alle FXML textfields
@@ -151,14 +150,14 @@ public class GuiController {
 	
 
 	public void eenInstructie(){
-        upTime();
-        timer.setText(String.valueOf(time));
 		if(instructies!=null){
 
 		    if(!instructies.isEmpty()) {
 
                 System.out.println("1 instructie");
                 if (time <= aantalInstructies) {
+                    upTime();
+                    timer.setText(String.valueOf(time));
 
                     
 
@@ -250,22 +249,7 @@ public class GuiController {
 		rPageNummer.setCellValueFactory(new PropertyValueFactory<>("pageNumber"));
 		rPid.setCellValueFactory(new PropertyValueFactory<>("pid"));
 	}
-	
-	public void aanmakenPageTabel(int pid) {
-		pageTabel=new ArrayList<>();
-		pidText.setText(String.valueOf(pid));
-		for(int i=0;i<16;i++){
-			PageTableEntry pte=new PageTableEntry(pid,i,0,0,-1,-1);  // pagenummer presentbit modifybit lastaccestime framenummer
-			pageTabel.add(pte);
-			pageTabelGui.getItems().add(pte); //GUI
-		}
-		pPageNummer.setCellValueFactory(new PropertyValueFactory<>("pageNumber"));
-		pPresentBit.setCellValueFactory(new PropertyValueFactory<>("presentBit"));
-		pModifyBit.setCellValueFactory(new PropertyValueFactory<>("modifyBit"));
-		pLastAccesTime.setCellValueFactory(new PropertyValueFactory<>("lastAccessTime"));
-		pFrameNummer.setCellValueFactory(new PropertyValueFactory<>("frameNumber"));
-	}
-	
+
 	private void clear() {
 		instructies=null;
 		setTime(0);
