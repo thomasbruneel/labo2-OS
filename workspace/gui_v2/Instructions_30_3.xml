@@ -7,7 +7,7 @@
 	</instruction>
 	<instruction>
 		<processID>0</processID>
-		<operation>Read</operation>
+		<operation>Write</operation>
 		<address>21639</address>
 	</instruction>
 	<instruction>
